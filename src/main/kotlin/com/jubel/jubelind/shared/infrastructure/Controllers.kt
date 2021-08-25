@@ -1,10 +1,7 @@
 package com.jubel.jubelind.shared.infrastructure
 
 import com.google.inject.Injector
-import com.jubel.jubelind.products.infrastructure.ProductCreationController
-import com.jubel.jubelind.products.infrastructure.ProductDeletionController
-import com.jubel.jubelind.products.infrastructure.ProductListAllController
-import com.jubel.jubelind.products.infrastructure.ProductRetrievalController
+import com.jubel.jubelind.products.infrastructure.*
 
 class Controllers {
 
@@ -13,5 +10,6 @@ class Controllers {
         injector.getInstance(ProductRetrievalController::class.java)
         injector.getInstance(ProductDeletionController::class.java)
         injector.getInstance(ProductListAllController::class.java)
+        injector.getInstance(ProductFindByNameController::class.java)
     }
 }

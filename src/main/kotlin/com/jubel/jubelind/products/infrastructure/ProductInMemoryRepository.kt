@@ -31,4 +31,8 @@ class ProductInMemoryRepository: ProductRepository {
     override fun listAll(): List<Product> {
         return products.toMutableList()
     }
+
+    override fun findByName(str: String): List<Product> {
+        return products.filter { it.name.contains(str, true) }
+    }
 }

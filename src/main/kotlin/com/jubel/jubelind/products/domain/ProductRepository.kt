@@ -11,4 +11,5 @@ interface ProductRepository{
     fun getById(id: String): Optional<Product>
     fun deleteById(id: String)
     fun listAll(): List<Product>
+    fun findByName(str: String): List<Product>
 }

@@ -18,7 +18,7 @@ fun Product.encodeToString(): String{
 }
 
 fun List<Product>.encodeToString(): String{
-    return "[${this.joinToString(",")}]"
+    return "[${this.joinToString(","){it.encodeToString()}}]"
 }
 
 fun Message.encodeToString(): String{

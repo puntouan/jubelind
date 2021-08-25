@@ -36,7 +36,7 @@ class ProductRetrievalControllerShould {
             .getById(request).toString()
 
         // then
-        val productResult = ProductMother.fromJson(result)
+        val productResult = ProductMother.fromJson2Product(result)
         assertEquals(existingProduct, productResult)
     }
 

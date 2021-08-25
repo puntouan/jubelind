@@ -40,7 +40,7 @@ class ProductCreationControllerShould {
 
         // when
         val result = ProductCreationController(productCreation).createNewProduct(request).toString()
-        val resultProduct = ProductMother.fromJson(result)
+        val resultProduct = ProductMother.fromJson2Product(result)
 
         // then
         Assertions.assertEquals(createdProduct, resultProduct)
