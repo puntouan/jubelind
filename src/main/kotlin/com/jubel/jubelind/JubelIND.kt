@@ -3,14 +3,12 @@ package com.jubel.jubelind
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.jubel.jubelind.shared.infrastructure.*
-import kotlinx.serialization.SerializationException
-import spark.Filter
-import spark.Request
 import spark.Response
-import spark.Spark
 import spark.Spark.awaitInitialization
 import spark.Spark.exception
 import spark.kotlin.after
+import spark.kotlin.before
+import spark.kotlin.options
 import spark.kotlin.stop
 
 class JubelIND {
@@ -21,6 +19,7 @@ class JubelIND {
 
         setDefaultContentType()
         exceptionsHandlers()
+        allowCors()
 
         awaitInitialization()
 
@@ -57,4 +56,27 @@ class JubelIND {
         response.body(messageObj.encodeToString())
     }
 
+    private fun allowCors(){
+        options("/*") {
+            val accessControlRequestHeaders = request
+                .headers("Access-Control-Request-Headers")
+            if (accessControlRequestHeaders != null) {
+                response.header(
+                    "Access-Control-Allow-Headers",
+                    accessControlRequestHeaders
+                )
+            }
+            val accessControlRequestMethod = request
+                .headers("Access-Control-Request-Method")
+            if (accessControlRequestMethod != null) {
+                response.header(
+                    "Access-Control-Allow-Methods",
+                    accessControlRequestMethod
+                )
+            }
+            "OK"
+        }
+
+        before { response.header("Access-Control-Allow-Origin", "*") }
+    }
 }
