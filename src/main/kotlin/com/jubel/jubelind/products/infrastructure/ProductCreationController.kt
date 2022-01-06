@@ -11,7 +11,7 @@ import spark.Request
 import spark.kotlin.post
 
 class ProductCreationController @Inject constructor(
-    private val productProductCreation: ProductCreation
+    private val productCreation: ProductCreation
 ) {
     init {
         post("/product"){
@@ -25,7 +25,7 @@ class ProductCreationController @Inject constructor(
         }catch (ex: SerializationException){
             throw BadRequestException("Failed to parse request. ${ex.message} ", ex)
         }
-        val createdProduct = productProductCreation.create(productToCreate)
+        val createdProduct = productCreation.create(productToCreate)
         return createdProduct.encodeToString()
     }
 

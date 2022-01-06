@@ -20,9 +20,9 @@ internal class ProductGetByIdShould {
     @Test
     fun `give an existing product by id`(){
         val existingProduct = ProductMother.instance()
-        `when`(productRepository.getById(existingProduct.id.value)).thenReturn(Optional.of(existingProduct))
+        `when`(productRepository.getById(existingProduct.id.value)).thenReturn(existingProduct)
 
-        val resultProduct = ProductGetById(productRepository).getById(existingProduct.id.value).get()
+        val resultProduct = ProductGetById(productRepository).getById(existingProduct.id.value)
 
         assertEquals(existingProduct, resultProduct)
     }
@@ -30,11 +30,11 @@ internal class ProductGetByIdShould {
     @Test
     fun `give nothing for a not existing`(){
 
-        `when`(productRepository.getById("non-existent-id")).thenReturn(Optional.empty())
+        `when`(productRepository.getById("non-existent-id")).thenReturn(null)
 
         val resultProduct = ProductGetById(productRepository).getById("non-existent-id")
 
-        assertThat(resultProduct).isEmpty
+        assertThat(resultProduct).isNull()
 
     }
 

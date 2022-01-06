@@ -8,8 +8,9 @@ import java.util.*
 interface ProductRepository{
 
     fun createProduct(product: Product)
-    fun getById(id: String): Optional<Product>
+    fun getById(id: String): Product?
     fun deleteById(id: String)
     fun listAll(): List<Product>
     fun findByName(str: String): List<Product>
+    fun updateProduct(id: String, productData: ProductDataToUpdate): Product
 }

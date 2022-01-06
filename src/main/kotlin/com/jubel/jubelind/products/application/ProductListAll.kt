@@ -8,6 +8,6 @@ class ProductListAll @Inject constructor(
     private val productRepository: ProductRepository
 ) {
     fun listAll(): List<Product> {
-        return productRepository.listAll()
+        return productRepository.listAll().sortedBy { it.name }
     }
 }

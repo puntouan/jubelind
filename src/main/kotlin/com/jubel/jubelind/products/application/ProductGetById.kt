@@ -8,8 +8,7 @@ import java.util.*
 class ProductGetById @Inject constructor(
     private val productRepository: ProductRepository
 ) {
-    fun getById(id: String): Optional<Product> {
-        println("Repo siendo getting:" + productRepository)
+    fun getById(id: String): Product? {
         return productRepository.getById(id)
     }
 }

@@ -2,6 +2,7 @@ package com.jubel.jubelind.products.domain
 
 import kotlinx.serialization.Serializable
 
+
 @Serializable
 data class Product(
     val id: ProductId,

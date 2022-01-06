@@ -29,7 +29,7 @@ class ProductRetrievalControllerShould {
         `when`(request.params(":productId"))
             .thenReturn(existingProduct.id.value)
         `when`(productGetById.getById(existingProduct.id.value))
-            .thenReturn(Optional.of(existingProduct))
+            .thenReturn(existingProduct)
 
         // when
         val result = ProductRetrievalController(productGetById)
@@ -46,7 +46,7 @@ class ProductRetrievalControllerShould {
         `when`(request.params(":productId"))
             .thenReturn("non-existing-id")
         `when`(productGetById.getById("non-existing-id"))
-            .thenReturn(Optional.empty())
+            .thenReturn(null)
 
         // then
         assertThrows<NotFoundException> {

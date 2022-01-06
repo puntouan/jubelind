@@ -11,5 +11,6 @@ class Controllers {
         injector.getInstance(ProductDeletionController::class.java)
         injector.getInstance(ProductListAllController::class.java)
         injector.getInstance(ProductFindByNameController::class.java)
+        injector.getInstance(ProductUpdateController::class.java)
     }
 }

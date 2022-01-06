@@ -1,0 +1,152 @@
+Nombre,CAL,P,G,C,showAmountInTable,showInShoppingList,weightOfTheUnit,orderShopping,PP,PG,PC,VALIDATION
+Aceite de oliva,888,0,100,0,TRUE,FALSE,1,110 - Aceite-Vinagre,0.00%,101.35%,0.00%,OK
+Agua,0,0,0,0,TRUE,FALSE,1,000 - NONE,,,,
+Aguacate,137,1.5,12,0.4,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,4.38%,78.83%,1.17%,-0.1562
+Ajo,117,3.93,0.23,24.3,TRUE,FALSE,1,050 - Verdura congelada,13.44%,1.77%,83.08%,OK
+Ajos tiernos,37,1.9,0.3,4.7,TRUE,TRUE,1,050 - Verdura congelada,20.54%,7.30%,50.81%,-0.2135
+Albahaca fresca,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Alubia blanca cocida,83,5.8,0.4,10.7,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,27.95%,4.34%,51.57%,-0.1614
+Anacardos natural,604,22,48,19,TRUE,TRUE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,14.57%,71.52%,12.58%,OK
+Apio,11,0.9,0.1,1.5,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,32.73%,8.18%,54.55%,OK
+Arroz basmati,355,9,0.6,78,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,10.14%,1.52%,87.89%,OK
+Arroz estándar,344,6.5,0.7,76,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,7.56%,1.83%,88.37%,OK
+Arroz integral (Hacendado),347,8.4,2.5,71,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,9.68%,6.48%,81.84%,OK
+Atún congelado (Hacendado),82,19.9,0.11,1,TRUE,TRUE,1,080 - Pescado congelado,97.07%,1.21%,4.88%,OK
+Atún en aceite oli lata,357,19,31,0.9,TRUE,TRUE,60,120 - Latas conserva,21.29%,78.15%,1.01%,OK
+Atún fresco,101,24.2,0.2,0.5,TRUE,TRUE,1,070 - Pescado fresco envasado,95.84%,1.78%,1.98%,OK
+Atún lata nat,97,21,1,1,TRUE,TRUE,60,120 - Latas conserva,86.60%,9.28%,4.12%,OK
+Azafrán,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Bacalao fresco,83,18.2,1,0,TRUE,TRUE,1,100 - Pescado fresco,87.71%,10.84%,0.00%,OK
+Bacon,349,14.9,31.7,1,TRUE,TRUE,1,180 - Charcutería,17.08%,81.75%,1.15%,OK
+Berenjena,20,0.7,0.2,2.39,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,14.00%,9.00%,47.80%,-0.2920
+Brócoli fresco o congelado,26,3,0.4,2.4,TRUE,TRUE,1,050 - Verdura congelada,46.15%,13.85%,36.92%,OK
+Brotes tiernos,22,1.6,0.6,1.5,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,29.09%,24.55%,27.27%,-0.1909
+Cacao en polvo 0%,375,25.5,16,16.3,TRUE,TRUE,1,240 - Yogures-Café-Galletas,27.20%,38.40%,17.39%,-0.1701
+Calabacín,17,1.88,0.2,2,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,44.24%,10.59%,47.06%,OK
+Caldo de pollo (Gallina Blanca),5,0.4,0.3,0.2,TRUE,TRUE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,32.00%,54.00%,16.00%,OK
+Caldo de verdura,5,0.3,0.5,0.3,TRUE,TRUE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,24.00%,90.00%,24.00%,0.3800
+Canela,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Cebolla,41,1.2,0.1,7.9,TRUE,TRUE,1,050 - Verdura congelada,11.71%,2.20%,77.07%,-0.0902
+Cebolleta,41,1.2,0.1,7.9,TRUE,TRUE,1,010 - Tomate-Patata-Cebolla-Pepino-Ajo,11.71%,2.20%,77.07%,-0.0902
+Cebollino,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Champiñón,26,1.8,0.3,4,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,27.69%,10.38%,61.54%,OK
+Cherry,19,0.9,0.1,3.5,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,18.95%,4.74%,73.68%,OK
+Chocolate negro 72% (Hacendado),580,7.4,44,33,TRUE,TRUE,1,230 - Chocolate,5.10%,68.28%,22.76%,OK
+Chocolate negro 85% (Hacendado),576,12,46,22,TRUE,TRUE,1,230 - Chocolate,8.33%,71.88%,15.28%,OK
+Cilantro,0,0,0,0,FALSE,FALSE,1,050 - Verdura congelada,,,,
+Clara de huevo (Hacendado),50,11,0.1,0.5,TRUE,TRUE,1,210 - Platos preparados,88.00%,1.80%,4.00%,-0.0620
+Coliflor congelada,28,2.2,0.3,3.1,TRUE,TRUE,1,050 - Verdura congelada,31.43%,9.64%,44.29%,-0.1464
+Copos avena,375,14,7,60,TRUE,TRUE,1,250 - Cereales,14.93%,16.80%,64.00%,OK
+"Cous cous (Bia, Mercadona)",350,12,1.6,70,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,13.71%,4.11%,80.00%,OK
+Crema de espárragos,46,0.6,2,6.3,TRUE,TRUE,1,210 - Platos preparados,5.22%,39.13%,54.78%,OK
+Curry,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Dorada fresca,78,17,1,0,TRUE,TRUE,1,070 - Pescado fresco envasado,87.18%,11.54%,0.00%,OK
+Edamame,130,11,4,11,TRUE,TRUE,1,050 - Verdura congelada,33.85%,27.69%,33.85%,OK
+Emperador,108,18,3.5,0.5,TRUE,TRUE,1,100 - Pescado fresco,66.67%,29.17%,1.85%,OK
+Espinacas normales o baby (Hacendado),22,2.7,0.8,1,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,49.09%,32.73%,18.18%,OK
+Garbanzo cocido pedrosillano (Hacendado),90,5.5,2.2,9.5,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,24.44%,22.00%,42.22%,-0.1133
+Guisantes congelados (Hacendado),83,6,0.4,11,TRUE,TRUE,1,050 - Verdura congelada,28.92%,4.34%,53.01%,-0.1373
+Hamburguesa pollo,209,16,16,0,TRUE,TRUE,1,170 - Carne fresca,30.62%,68.90%,0.00%,OK
+Hamburguesa ternera,207,19.4,14,0.9,TRUE,TRUE,1,170 - Carne fresca,37.49%,60.87%,1.74%,OK
+Harina de trigo,346.18,10.3,1.31,73.11,TRUE,TRUE,1,060 - Harina,11.90%,3.41%,84.48%,OK
+Hierbas provenzales,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Hoja verde,19,11.425,7.8275,18.5025,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,240.53%,370.78%,389.53%,9.0083
+Huevo crudo entero,150,12.5,11.1,0,TRUE,TRUE,60,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,33.33%,66.60%,0.00%,OK
+Jamón ibérico,346.8,32,24,0.7,TRUE,TRUE,1,180 - Charcutería,36.91%,62.28%,0.81%,OK
+Jamón York,102,19,2.5,0.9,TRUE,TRUE,1,180 - Charcutería,74.51%,22.06%,3.53%,OK
+Jengibre,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Judia verde,39,1.9,0.1,6.1,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,19.49%,2.31%,62.56%,-0.1564
+Langostino crudo pelado congelado (Pescanova),63,14.8,0.4,0,TRUE,TRUE,1,080 - Pescado congelado,93.97%,5.71%,0.00%,OK
+Laurel,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Leche desnatada sin lactosa (Pascual),36,3.4,0.3,5,TRUE,TRUE,1,220 - Leche-Papel higiénico-Servilletas,37.78%,7.50%,55.56%,OK
+Lechuga iceberg,19,0.9,0.1,3,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,18.95%,4.74%,63.16%,-0.1316
+Lechuga romana,16,1.2,0.3,1.2,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,30.00%,16.88%,30.00%,-0.2313
+Lentejas cocidas,115,9,0.4,20,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,31.30%,3.13%,69.57%,OK
+Lomo de cerdo magro,152,18,8.9,0,TRUE,TRUE,1,170 - Carne fresca,47.37%,52.70%,0.00%,OK
+Lomo embuchado,199,38,5,0.5,TRUE,TRUE,1,180 - Charcutería,76.38%,22.61%,1.01%,OK
+Maicena,350,0.3,0.1,87,TRUE,TRUE,1,060 - Harina,0.34%,0.26%,99.43%,OK
+Maíz dulce (Hacendado),82,2.5,1.4,14,TRUE,TRUE,1,120 - Latas conserva,12.20%,15.37%,68.29%,OK
+Mandarina,43,0.8,0,9,TRUE,TRUE,60,020 - Fruta,7.44%,0.00%,83.72%,-0.0884
+Mango,65,0.5,0.3,15,TRUE,TRUE,1,020 - Fruta,3.08%,4.15%,92.31%,OK
+Mantequilla,733,0.7,82,0.5,TRUE,TRUE,1,240 - Yogures-Café-Galletas,0.38%,100.68%,0.27%,OK
+Mantequilla sin sal (Hacendado),743,0.5,82,0.8,TRUE,TRUE,1,240 - Yogures-Café-Galletas,0.27%,99.33%,0.43%,OK
+Manzana,50,0.3,0,12,TRUE,TRUE,1,020 - Fruta,2.40%,0.00%,96.00%,OK
+Masa de pizza,270,8.6,4.2,49.5,TRUE,TRUE,1,210 - Platos preparados,12.74%,14.00%,73.33%,OK
+Merluza congelada,82,18,1.2,0.2,TRUE,TRUE,1,080 - Pescado congelado,87.80%,13.17%,0.98%,OK
+Miel,333,0.4,0.1,82.8,TRUE,FALSE,1,270 - Pan envasado-Mermelada-Miel,0.48%,0.27%,99.46%,OK
+Muesli crunchy 0 azucar añadido (Hacendado),409,9.3,13,64,TRUE,TRUE,1,250 - Cereales,9.10%,28.61%,62.59%,OK
+Muslo de pollo,209,16,16,0,TRUE,TRUE,1,170 - Carne fresca,30.62%,68.90%,0.00%,OK
+Nabo,19,0.9,0.2,3.2,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,18.95%,9.47%,67.37%,OK
+Orégano,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Pan blanco,264,9,3.2,49,TRUE,TRUE,1,260 - Pan-Picos,13.64%,10.91%,74.24%,OK
+Pan hamburguesa,270,10,4.5,45,TRUE,TRUE,1,270 - Pan envasado-Mermelada-Miel,14.81%,15.00%,66.67%,OK
+Pan integral,246,9.6,4.1,45.5,TRUE,TRUE,1,260 - Pan-Picos,15.61%,15.00%,73.98%,OK
+Pan thins,240,8.7,2.6,37,TRUE,TRUE,1,270 - Pan envasado-Mermelada-Miel,14.50%,9.75%,61.67%,-0.1408
+Pastilla caldo de carne,244,13,15,14,TRUE,FALSE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,21.31%,55.33%,22.95%,OK
+Patata,73,2.2,0.2,15.2,TRUE,TRUE,1,010 - Tomate-Patata-Cebolla-Pepino-Ajo,12.05%,2.47%,83.29%,OK
+Patatas cong horno,144,2.3,6,20.3,TRUE,TRUE,1,050 - Verdura congelada,6.39%,37.50%,56.39%,OK
+Pechuga de pavo,105,24.1,1,0,TRUE,TRUE,1,170 - Carne fresca,91.81%,8.57%,0.00%,OK
+Pechuga de pollo,145,22.2,6.2,0,TRUE,TRUE,1,170 - Carne fresca,61.24%,38.48%,0.00%,OK
+Pepino,12,0.7,0.1,2,TRUE,TRUE,1,010 - Tomate-Patata-Cebolla-Pepino-Ajo,23.33%,7.50%,66.67%,OK
+Pera,45,0.4,0.1,10.6,TRUE,TRUE,150,020 - Fruta,3.56%,2.00%,94.22%,OK
+Perejil,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Picatostes tostados (Hacendado),374,11,2,75.6,TRUE,TRUE,1,270 - Pan envasado-Mermelada-Miel,11.76%,4.81%,80.86%,OK
+Pimentón,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Pimienta negra,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Pimiento fresco o congelado,29,1.3,0.6,4.5,TRUE,TRUE,1,050 - Verdura congelada,17.93%,18.62%,62.07%,OK
+Piñones,635,13,60.5,20.5,TRUE,FALSE,1,000 - NONE,8.19%,85.75%,12.91%,0.0685
+ProductOne,108,9,4,9,FALSE,FALSE,1,000 - NONE,33.33%,33.33%,33.33%,OK
+Puerro,29,2.19,0.29,3.26,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,30.21%,9.00%,44.97%,-0.1583
+Queso azul,341,20,29,0.5,TRUE,TRUE,1,190 - Quesos,23.46%,76.54%,0.59%,OK
+Queso batido (Hacendado),46,8,0.1,3.5,TRUE,TRUE,1,190 - Quesos,69.57%,1.96%,30.43%,OK
+Queso feta,277,16,23.2,1,TRUE,TRUE,1,190 - Quesos,23.10%,75.38%,1.44%,OK
+Queso fresco 0MG (Burgo de Arias),58,11,0,3.6,TRUE,TRUE,1,190 - Quesos,75.86%,0.00%,24.83%,OK
+Queso lonchas light (Entrepinares),300,28,20,2,TRUE,TRUE,1,190 - Quesos,37.33%,60.00%,2.67%,OK
+Queso lonchas light (Havarti),252,27,15,2.2,TRUE,TRUE,1,190 - Quesos,42.86%,53.57%,3.49%,OK
+Queso manchego semicurado,408,23,34,2.6,TRUE,TRUE,1,190 - Quesos,22.55%,75.00%,2.55%,OK
+"Queso mozzarella, Perlas (Hacendado)",199,15,15,1,TRUE,TRUE,1,190 - Quesos,30.15%,67.84%,2.01%,OK
+Queso parmesano,398,33,29,0,TRUE,TRUE,1,190 - Quesos,33.17%,65.58%,0.00%,OK
+Queso untar light,142,9.9,8,7.1,TRUE,TRUE,1,190 - Quesos,27.89%,50.70%,20.00%,OK
+Rúcula (Hacendado),31,2.6,0.7,3.7,TRUE,TRUE,1,030 - Hoja verde-Cherry-Aguacate-Verduras micro,33.55%,20.32%,47.74%,OK
+Sal de mesa,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Salmón fresco,182,18.4,12,0,TRUE,TRUE,1,070 - Pescado fresco envasado,40.44%,59.34%,0.00%,OK
+Salsa de soja (Hacendado),74,7.5,0,8.3,TRUE,FALSE,1,090 - Salsas,40.54%,0.00%,44.86%,-0.1459
+Salsa Lea Perrins,96,0.8,0.9,21,TRUE,FALSE,1,000 - NONE,3.33%,8.44%,87.50%,OK
+Seitán,170,28,2.6,7.8,TRUE,TRUE,1,210 - Platos preparados,65.88%,13.76%,18.35%,OK
+Semillas de sésamo,628,23,56,1.6,TRUE,FALSE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,14.65%,80.25%,1.02%,OK
+Soja texturizada,326,51,1.3,20,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,62.58%,3.59%,24.54%,-0.0929
+Ternera,119,21,3.5,0.5,TRUE,TRUE,1,170 - Carne fresca,70.59%,26.47%,1.68%,OK
+Tomate,19,0.9,0.1,3.5,TRUE,TRUE,1,010 - Tomate-Patata-Cebolla-Pepino-Ajo,18.95%,4.74%,73.68%,OK
+Tomate triturado (Hacendado),26,0.8,0.1,5.2,TRUE,TRUE,1,120 - Latas conserva,12.31%,3.46%,80.00%,OK
+Tomillo,0,0,0,0,FALSE,FALSE,1,000 - NONE,,,,
+Tortita de trigo (Hacendado),294,8,5.3,53,TRUE,TRUE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,10.88%,16.22%,72.11%,OK
+Uva,72,0.6,0.7,15.5,TRUE,TRUE,1,020 - Fruta,3.33%,8.75%,86.11%,OK
+Vinagre de vino blanco,1,0,0,0.25,TRUE,FALSE,1,110 - Aceite-Vinagre,0.00%,0.00%,100.00%,OK
+Vinagre módena,123,1,0,25,FALSE,FALSE,1,110 - Aceite-Vinagre,3.25%,0.00%,81.30%,-0.1545
+Vino blanco (cocinar),17,0.4,0.1,3.6,TRUE,TRUE,1,140 - Cerveza,9.41%,5.29%,84.71%,OK
+Yogur cremoso natural edulcorado 0MG (Hacendado),50,4.8,0.1,5.8,TRUE,TRUE,125,240 - Yogures-Café-Galletas,38.40%,1.80%,46.40%,-0.1340
+Yogur proteinas arándanos (Hacendado),53,8.3,0.1,5,TRUE,TRUE,120,240 - Yogures-Café-Galletas,62.64%,1.70%,37.74%,OK
+Yogur proteinas blanco (Hacendado),52,10,0.5,3.1,TRUE,TRUE,120,240 - Yogures-Café-Galletas,76.92%,8.65%,23.85%,0.0942
+Yogur proteinas chocolate (Hacendado),81,8.4,1.1,8.7,TRUE,TRUE,120,240 - Yogures-Café-Galletas,41.48%,12.22%,42.96%,OK
+Yogur proteinas fresa (Hacendado),53,8.3,0.1,5,TRUE,TRUE,120,240 - Yogures-Café-Galletas,62.64%,1.70%,37.74%,OK
+Yogur proteinas mango (Hacendado),56,8.3,0.1,5.8,TRUE,TRUE,120,240 - Yogures-Café-Galletas,59.29%,1.61%,41.43%,OK
+Zanahoria,34,0.8,0.3,7,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,9.41%,7.94%,82.35%,OK
+Zumo de lima,17,0.4,0.1,3.6,TRUE,TRUE,1,020 - Fruta,9.41%,5.29%,84.71%,OK
+Zumo de limón,17,0.4,0.1,3.6,TRUE,TRUE,1,020 - Fruta,9.41%,5.29%,84.71%,OK
+Zumo de naranja,44,0.69,0.2,9.4,TRUE,TRUE,1,020 - Fruta,6.27%,4.09%,85.45%,OK
+Alcachofa congelada baby,36,3.3,0.2,2.7,TRUE,TRUE,1,050 - Verdura congelada,36.67%,5.00%,30.00%,-0.2833
+Plátano,89,1.2,0.3,20,TRUE,TRUE,90,020 - Fruta,5.39%,3.03%,89.89%,OK
+Proteína polvo,418,80,7.3,8.5,TRUE,FALSE,1,000 - NONE,76.56%,15.72%,8.13%,OK
+Pechuga de pollo fiambre,107,23.4,1.2,0.6,TRUE,TRUE,1,180 - Charcutería,87.48%,10.09%,2.24%,OK
+Queso de cabra,347,17,29.2,4.1,TRUE,TRUE,1,190 - Quesos,19.60%,75.73%,4.73%,OK
+Pasta (hélices),359,12,1.7,74,TRUE,TRUE,1,160 - Legumbres-Arroz-Pasta,13.37%,4.26%,82.45%,OK
+Frutos rojos congelados,39,0.9,0,5.5,TRUE,TRUE,1,050 - Verdura congelada,9.23%,0.00%,56.41%,-0.3436
+Semillas de chía,464,22,34,2.6,TRUE,TRUE,1,150 - Huevos-Caldo-Aperitivos-Tortitas trigo,18.97%,65.95%,2.24%,-0.1284
+Arándanos,33,0.63,0.6,6.05,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,7.64%,16.36%,73.33%,OK
+Gelatina de proteína,39,6,0,3.8,TRUE,TRUE,100,240 - Yogures-Café-Galletas,61.54%,0.00%,38.97%,OK
+Mayonesa,552,0.8,9.7,2,TRUE,TRUE,1,090 - Salsas,0.58%,15.82%,1.45%,-0.8216
+Salmón ahumado,182,22,10,0,TRUE,TRUE,1,200 - Salazones,48.35%,49.45%,0.00%,OK
+Mostaza,149,7.2,11,1.8,TRUE,TRUE,1,090 - Salsas,19.33%,66.44%,4.83%,-0.0940
+Arreglo ensaladilla,65,2.5,0.2,12,TRUE,TRUE,1,050 - Verdura congelada,15.38%,2.77%,73.85%,-0.0800
+Poke preparado,120,8.8,2.1,14,FALSE,FALSE,1,000 - NONE,29.33%,15.75%,46.67%,-0.0825
+Espárragos trigueros,27,2.6,0.5,2.3,TRUE,TRUE,1,040 - Verdura fresca- Champiñones,38.52%,16.67%,34.07%,-0.1074

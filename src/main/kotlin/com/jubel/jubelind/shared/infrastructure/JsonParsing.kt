@@ -1,12 +1,17 @@
 package com.jubel.jubelind.shared.infrastructure
 
 import com.jubel.jubelind.products.domain.Product
+import com.jubel.jubelind.products.domain.ProductDataToUpdate
 import com.jubel.jubelind.products.domain.ProductToCreate
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 
 fun ProductToCreate.Companion.decodeFromString(source: String): ProductToCreate {
+    return Json.decodeFromString(source)
+}
+
+fun ProductDataToUpdate.Companion.decodeFromString(source: String): ProductDataToUpdate {
     return Json.decodeFromString(source)
 }
 

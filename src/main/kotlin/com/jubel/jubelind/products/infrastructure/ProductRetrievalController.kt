@@ -19,11 +19,8 @@ class ProductRetrievalController @Inject constructor(
 
     fun getById(request: Request): Any{
         val productId = request.params(":productId")
-        val product = productGetById.getById(productId)
-        if (!product.isPresent){
-            throw NotFoundException("No such product: $productId")
-        }
-        return product.get().encodeToString()
+        val product = productGetById.getById(productId) ?: throw NotFoundException("No such product: $productId")
+        return product.encodeToString()
     }
 
 }

@@ -3,7 +3,7 @@ package com.jubel.jubelind.products.domain
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProductToCreate(
+data class ProductDataToUpdate(
     val name: String,
     val calories: Float,
     val protein: Float,
