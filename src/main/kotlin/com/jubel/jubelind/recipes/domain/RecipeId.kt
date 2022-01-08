@@ -1,6 +1,5 @@
 package com.jubel.jubelind.recipes.domain
 
-import com.jubel.jubelind.products.domain.ProductId
 import kotlinx.serialization.Serializable
 import java.util.*
 
@@ -11,7 +10,7 @@ class RecipeId(val value: String = UUID.randomUUID().toString()) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as ProductId
+        other as RecipeId
 
         if (value != other.value) return false
 
@@ -21,4 +20,5 @@ class RecipeId(val value: String = UUID.randomUUID().toString()) {
     override fun hashCode(): Int {
         return value.hashCode()
     }
+
 }

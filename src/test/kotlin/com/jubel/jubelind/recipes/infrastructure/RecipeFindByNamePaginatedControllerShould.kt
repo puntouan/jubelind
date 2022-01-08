@@ -21,7 +21,6 @@ class RecipeFindByNamePaginatedControllerShould {
     @Mock
     lateinit var recipeFindByNamePaginated: RecipeFindByNamePaginated
 
-    private val recipeFindByByNamePaginatedController = RecipeFindByByNamePaginatedController(recipeFindByNamePaginated)
 
     @Test
     fun `return matching products`(){
@@ -39,7 +38,7 @@ class RecipeFindByNamePaginatedControllerShould {
 
         // when
         val result = Json.decodeFromString<Page<Recipe>>(
-            recipeFindByByNamePaginatedController.findByNamePaginated("str", paginationParams).toString()
+            RecipeFindByByNamePaginatedController(recipeFindByNamePaginated).findByNamePaginated("str", paginationParams).toString()
         )
 
         // then
