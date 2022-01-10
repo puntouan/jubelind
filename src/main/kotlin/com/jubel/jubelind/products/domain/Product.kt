@@ -1,10 +1,6 @@
 package com.jubel.jubelind.products.domain
 
-import kotlinx.serialization.Serializable
-
-
-@Serializable
-data class Product(
+class Product(
     val id: ProductId,
     val name: String,
     val calories: Float,
@@ -14,7 +10,7 @@ data class Product(
 ){
 
     companion object{
-        fun fromProductForCreate(productToCreate: ProductToCreate): Product{
+        fun fromProductToCreate(productToCreate: ProductToCreate): Product{
             return Product(
                 ProductId(),
                 productToCreate.name,

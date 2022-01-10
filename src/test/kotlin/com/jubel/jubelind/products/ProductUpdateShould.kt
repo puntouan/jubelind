@@ -37,7 +37,7 @@ internal class ProductUpdateShould {
     @Test
     fun `update a product`() {
         val existingProduct = ProductMother.instance()
-        val productDataToUpdate = ProductDataToUpdateMother.instance()
+        val productDataToUpdate = ProductDataToUpdateMother.instanceDto()
 
         Given {
             repositoryWith(existingProduct)
@@ -59,7 +59,7 @@ internal class ProductUpdateShould {
 
     @Test
     fun `return error when updating a non-existing product`(){
-        val productDataToUpdate = ProductDataToUpdateMother.instance()
+        val productDataToUpdate = ProductDataToUpdateMother.instanceDto()
 
         Given {
             port(4567)

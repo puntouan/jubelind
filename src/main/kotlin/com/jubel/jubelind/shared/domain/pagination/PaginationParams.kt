@@ -1,6 +1,11 @@
 package com.jubel.jubelind.shared.domain.pagination
 
-class PaginationParams(val first: Int? = null, private val last: Int? = null, private val after: Int? = null, private val before: Int? = null) {
+class PaginationParams(
+    val first: Int? = null,
+    private val last: Int? = null,
+    private val after: Int? = null,
+    private val before: Int? = null
+) {
 
     init {
         if (first == null && last == null) throw IllegalArgumentException("Either 'first' or 'last' is mandatory")

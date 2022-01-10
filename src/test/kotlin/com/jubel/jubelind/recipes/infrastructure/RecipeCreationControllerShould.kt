@@ -5,6 +5,8 @@ import com.jubel.jubelind.recipes.domain.Recipe
 import com.jubel.jubelind.recipes.domain.RecipeMother
 import com.jubel.jubelind.recipes.domain.RecipeToCreate
 import com.jubel.jubelind.recipes.domain.RecipeToCreateMother
+import com.jubel.jubelind.recipes.infrastructure.dtos.RecipeDto
+import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDtoToDomain
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -30,13 +32,13 @@ class RecipeCreationControllerShould {
     @Test
     fun `create a new recipe`(){
         //given
-        val jsonRequest = Json.encodeToString(RecipeToCreateMother.instance())
+        val jsonRequest = Json.encodeToString(RecipeToCreateMother.instanceDto())
         Mockito.`when`(request.body()).thenReturn(jsonRequest)
         val expectedRecipe = RecipeMother.instance()
         Mockito.`when`(recipeCreation.run(kAny(RecipeToCreate::class.java))).thenReturn(expectedRecipe)
 
         // when
-        val resultRecipe = Json.decodeFromString<Recipe>(RecipeCreationController(recipeCreation).createNewRecipe(request).toString())
+        val resultRecipe = Json.decodeFromString<RecipeDto>(RecipeCreationController(recipeCreation).createNewRecipe(request).toString()).mapFromDtoToDomain()
 
         // then
         Assertions.assertEquals(expectedRecipe, resultRecipe)

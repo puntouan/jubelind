@@ -2,7 +2,7 @@ package com.jubel.jubelind.products
 
 
 import com.jubel.jubelind.JubelIND
-import com.jubel.jubelind.products.domain.ProductForCreateMother
+import com.jubel.jubelind.products.domain.ProductToCreateMother
 import io.restassured.http.ContentType.JSON
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
@@ -36,7 +36,7 @@ internal class ProductCreationShould {
 
     @Test
     fun `create a new product`() {
-        val productForCreate = ProductForCreateMother.instance()
+        val productForCreate = ProductToCreateMother.instanceDto()
         Given {
             port(4567)
             body(Json.encodeToString(productForCreate))

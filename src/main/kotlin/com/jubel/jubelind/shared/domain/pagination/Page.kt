@@ -1,8 +1,5 @@
 package com.jubel.jubelind.shared.domain.pagination
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 class Page<T>(
     val pageInfo: PageInfo,
     val records: List<T>
@@ -37,7 +34,6 @@ class Page<T>(
 
 }
 
-@Serializable
 data class PageInfo(
     val startOffset: Int?,
     val endOffset: Int?,

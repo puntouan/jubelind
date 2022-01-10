@@ -3,6 +3,9 @@ package com.jubel.jubelind
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.jubel.jubelind.shared.infrastructure.*
+import com.jubel.jubelind.shared.infrastructure.dtos.MessageDto
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import spark.Response
 import spark.Spark.awaitInitialization
 import spark.Spark.exception
@@ -52,8 +55,8 @@ class JubelIND {
 
     private fun setExceptionContentTypeAndMessage(response: Response, message: String?) {
         response.type("application/json")
-        val messageObj = Message(message ?: "NO MESSAGE")
-        response.body(messageObj.encodeToString())
+        val message = MessageDto(message ?: "NO MESSAGE")
+        response.body(Json.encodeToString(message))
     }
 
     private fun allowCors(){

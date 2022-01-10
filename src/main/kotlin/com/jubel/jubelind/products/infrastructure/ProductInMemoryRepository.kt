@@ -9,8 +9,9 @@ class ProductInMemoryRepository: ProductRepository {
 
     val products = mutableListOf<MutableProduct>()
 
-    override fun createProduct(product: Product) {
+    override fun createProduct(product: Product): Product {
         products.add(MutableProduct(product))
+        return product
     }
 
     override fun getById(id: String): Product? {

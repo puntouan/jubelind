@@ -29,16 +29,6 @@ class ProductMother {
             return products
         }
 
-        fun fromJson2Product(str: String): Product{
-            val productJson = Json.decodeFromString<ProductJson>(str)
-            return fromProductJson2Product(productJson)
-        }
-
-        fun fromJson2List(str: String): List<Product> {
-            val productsJson = Json.decodeFromString<List<ProductJson>>(str)
-            return productsJson.map { fromProductJson2Product(it) }
-        }
-
         private fun fromProductJson2Product(productJson: ProductJson): Product{
             return Product(
                 ProductId(productJson.id),

@@ -2,7 +2,11 @@ package com.jubel.jubelind.products.infrastructure
 
 import com.jubel.jubelind.products.application.ProductGetById
 import com.jubel.jubelind.products.domain.ProductMother
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
+import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
 import com.jubel.jubelind.shared.infrastructure.NotFoundException
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -36,7 +40,7 @@ class ProductRetrievalControllerShould {
             .getById(request).toString()
 
         // then
-        val productResult = ProductMother.fromJson2Product(result)
+        val productResult = Json.decodeFromString<ProductDto>(result).mapFromDtoToDomain()
         assertEquals(existingProduct, productResult)
     }
 

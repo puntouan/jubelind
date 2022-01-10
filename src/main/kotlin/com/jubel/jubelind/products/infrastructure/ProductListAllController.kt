@@ -1,11 +1,10 @@
 package com.jubel.jubelind.products.infrastructure
 
 import com.google.inject.Inject
-import com.jubel.jubelind.products.application.ProductGetById
 import com.jubel.jubelind.products.application.ProductListAll
-import com.jubel.jubelind.shared.infrastructure.NotFoundException
-import com.jubel.jubelind.shared.infrastructure.encodeToString
-import spark.Request
+import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import spark.kotlin.get
 
 class ProductListAllController @Inject constructor(
@@ -19,7 +18,7 @@ class ProductListAllController @Inject constructor(
     }
 
     fun listAll(): Any{
-        return productListAll.listAll().encodeToString()
+        return Json.encodeToString(productListAll.listAll().mapFromDomainToDto())
     }
 
 }

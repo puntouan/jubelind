@@ -8,7 +8,7 @@ import com.jubel.jubelind.shared.domain.pagination.PaginationParams
 @ImplementedBy(RecipeInMemoryRepository::class)
 interface RecipeRepository {
 
-    fun createRecipe(recipe: Recipe)
+    fun createRecipe(recipe: Recipe): Recipe
     fun findByNamePaginated(name: String, paginationParams: PaginationParams): Page<Recipe>
 
 }

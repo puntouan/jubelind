@@ -2,6 +2,7 @@ package com.jubel.jubelind.recipes.infrastructure
 
 import com.google.inject.Inject
 import com.jubel.jubelind.recipes.application.RecipeFindByNamePaginated
+import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDomainToDto
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -23,7 +24,7 @@ class RecipeFindByByNamePaginatedController @Inject constructor(
     }
 
     fun findByNamePaginated(str: String, paginationParams: PaginationParams): Any{
-        return Json.encodeToString(recipeFindByNamePaginated.run(str, paginationParams))
+        return Json.encodeToString(recipeFindByNamePaginated.run(str, paginationParams).mapFromDomainToDto())
     }
 
 }

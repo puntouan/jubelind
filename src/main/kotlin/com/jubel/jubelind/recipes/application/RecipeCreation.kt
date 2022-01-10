@@ -10,9 +10,7 @@ class RecipeCreation @Inject constructor(
 ) {
 
     fun run(recipeToCreate: RecipeToCreate): Recipe {
-        val recipe = Recipe.fromRecipeToCreate(recipeToCreate)
-        recipeRepository.createRecipe(recipe)
-        return recipe
+        return recipeRepository.createRecipe(Recipe.fromRecipeToCreate(recipeToCreate))
     }
 
 }

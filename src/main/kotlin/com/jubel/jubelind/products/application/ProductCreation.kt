@@ -10,9 +10,7 @@ class ProductCreation @Inject constructor(
 ) {
 
     fun create(productToCreate: ProductToCreate): Product {
-        val product = Product.fromProductForCreate(productToCreate)
-        productRepository.createProduct(product)
-        return product
+        return productRepository.createProduct(Product.fromProductToCreate(productToCreate))
     }
 
 }

@@ -1,10 +1,10 @@
 package com.jubel.jubelind.products.domain
 
-import kotlinx.serialization.Serializable
 import java.util.*
 
-@Serializable
-class ProductId(val value: String = UUID.randomUUID().toString()){
+class ProductId(
+    val value: String = UUID.randomUUID().toString()
+) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -20,5 +20,4 @@ class ProductId(val value: String = UUID.randomUUID().toString()){
     override fun hashCode(): Int {
         return value.hashCode()
     }
-
 }

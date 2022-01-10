@@ -1,11 +1,11 @@
 package com.jubel.jubelind.products.domain
 
-import com.jubel.jubelind.products.infrastructure.dtos.ProductDataToUpdateDto
+import com.jubel.jubelind.products.infrastructure.dtos.ProductToCreateDto
 import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class ProductDataToUpdateMother {
+class ProductToCreateMother {
 
     companion object{
 
@@ -17,8 +17,8 @@ class ProductDataToUpdateMother {
             protein: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             fat: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             carbohydrates: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
-        ): ProductDataToUpdateDto{
-            return ProductDataToUpdateDto(name, calories, protein, fat, carbohydrates)
+        ): ProductToCreateDto{
+            return ProductToCreateDto(name, calories, protein, fat, carbohydrates)
         }
 
         fun instance(
@@ -27,8 +27,9 @@ class ProductDataToUpdateMother {
             protein: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             fat: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             carbohydrates: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
-        ): ProductDataToUpdate{
-            return instanceDto(name,calories, protein, fat, carbohydrates).mapFromDtoToDomain()
+        ): ProductToCreate{
+            val dto = instanceDto(name, calories, protein, fat, carbohydrates)
+            return dto.mapFromDtoToDomain()
         }
     }
 

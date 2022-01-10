@@ -3,6 +3,8 @@ package com.jubel.jubelind.recipes.infrastructure
 import com.jubel.jubelind.recipes.application.RecipeFindByNamePaginated
 import com.jubel.jubelind.recipes.domain.Recipe
 import com.jubel.jubelind.recipes.domain.RecipeMother
+import com.jubel.jubelind.recipes.infrastructure.dtos.RecipesPageDto
+import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDtoToDomain
 import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PageInfo
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
@@ -37,9 +39,9 @@ class RecipeFindByNamePaginatedControllerShould {
             .thenReturn(pageMatchingRecipes)
 
         // when
-        val result = Json.decodeFromString<Page<Recipe>>(
+        val result = Json.decodeFromString<RecipesPageDto>(
             RecipeFindByByNamePaginatedController(recipeFindByNamePaginated).findByNamePaginated("str", paginationParams).toString()
-        )
+        ).mapFromDtoToDomain()
 
         // then
         Assertions.assertEquals(pageMatchingRecipes, result)

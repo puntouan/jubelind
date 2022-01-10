@@ -1,21 +1,14 @@
 package com.jubel.jubelind.recipes.domain
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class Recipe(
+class Recipe(
     val id: RecipeId,
     val name: String,
     val quantityProducts: List<ProductGrams>
     ){
 
     companion object{
-        fun fromRecipeToCreate(recipeToCreate: RecipeToCreate): Recipe {
-            return Recipe(
-                RecipeId(),
-                recipeToCreate.name,
-                emptyList()
-            )
+        fun fromRecipeToCreate(recipeToCreate: RecipeToCreate): Recipe{
+            return Recipe(RecipeId(), recipeToCreate.name, recipeToCreate.quantityProducts)
         }
     }
 

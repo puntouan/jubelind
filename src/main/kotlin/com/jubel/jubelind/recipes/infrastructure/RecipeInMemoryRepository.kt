@@ -3,10 +3,7 @@ package com.jubel.jubelind.recipes.infrastructure
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.jubel.jubelind.products.domain.Product
-import com.jubel.jubelind.recipes.domain.ProductGrams
-import com.jubel.jubelind.recipes.domain.Recipe
-import com.jubel.jubelind.recipes.domain.RecipeId
-import com.jubel.jubelind.recipes.domain.RecipeRepository
+import com.jubel.jubelind.recipes.domain.*
 import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
 import com.jubel.jubelind.shared.infrastructure.PaginatorInMemoryRepository
@@ -16,14 +13,17 @@ class RecipeInMemoryRepository @Inject constructor(
     private val paginator: PaginatorInMemoryRepository
 ): RecipeRepository {
 
-    private val recipes = mutableListOf<MutableRecipe>()
+    val recipes = mutableListOf<MutableRecipe>()
 
-    override fun createRecipe(recipe: Recipe) {
+    override fun createRecipe(recipe: Recipe): Recipe {
         recipes.add(MutableRecipe(recipe))
+        return recipe
     }
 
     override fun findByNamePaginated(name: String, paginationParams: PaginationParams): Page<Recipe> {
-        val queryResult = recipes.filter { it.name.contains(name, true) }.map { it.toRecipe() }
+        val queryResult = (if (name.isBlank()) recipes else
+            recipes.filter { it.name.contains(name, true) })
+            .map { it.toRecipe() }.sortedBy { it.name }
         return paginator.getPage(queryResult, paginationParams)
     }
 

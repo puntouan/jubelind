@@ -7,7 +7,7 @@ import java.util.*
 @ImplementedBy(ProductInMemoryRepository::class)
 interface ProductRepository{
 
-    fun createProduct(product: Product)
+    fun createProduct(product: Product): Product
     fun getById(id: String): Product?
     fun deleteById(id: String)
     fun listAll(): List<Product>

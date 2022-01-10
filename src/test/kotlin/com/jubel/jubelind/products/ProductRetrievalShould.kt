@@ -6,12 +6,15 @@ import com.jubel.jubelind.JubelIND
 import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
-import com.jubel.jubelind.shared.infrastructure.encodeToString
+import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
 import io.restassured.http.ContentType.JSON
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
-import org.hamcrest.Matchers.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.hamcrest.Matchers.containsString
+import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -47,7 +50,7 @@ internal class ProductRetrievalShould {
         } Then {
             statusCode(200)
             contentType(JSON)
-            body(equalTo(existingProduct.encodeToString()))
+            body(equalTo(Json.encodeToString(existingProduct.mapFromDomainToDto())))
         }
     }
 

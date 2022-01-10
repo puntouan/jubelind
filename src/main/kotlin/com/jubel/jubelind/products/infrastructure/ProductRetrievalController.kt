@@ -2,8 +2,10 @@ package com.jubel.jubelind.products.infrastructure
 
 import com.google.inject.Inject
 import com.jubel.jubelind.products.application.ProductGetById
+import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
 import com.jubel.jubelind.shared.infrastructure.NotFoundException
-import com.jubel.jubelind.shared.infrastructure.encodeToString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import spark.Request
 import spark.kotlin.get
 
@@ -20,7 +22,7 @@ class ProductRetrievalController @Inject constructor(
     fun getById(request: Request): Any{
         val productId = request.params(":productId")
         val product = productGetById.getById(productId) ?: throw NotFoundException("No such product: $productId")
-        return product.encodeToString()
+        return Json.encodeToString(product.mapFromDomainToDto())
     }
 
 }

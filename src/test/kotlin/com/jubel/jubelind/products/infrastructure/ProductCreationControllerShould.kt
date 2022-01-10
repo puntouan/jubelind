@@ -1,10 +1,13 @@
 package com.jubel.jubelind.products.infrastructure
 
 import com.jubel.jubelind.products.application.ProductCreation
-import com.jubel.jubelind.products.domain.ProductForCreateMother
+import com.jubel.jubelind.products.domain.ProductToCreateMother
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductToCreate
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
+import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
 import com.jubel.jubelind.shared.infrastructure.BadRequestException
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -34,13 +37,13 @@ class ProductCreationControllerShould {
     fun `create a new product`(){
         val createdProduct = ProductMother.instance()
         //given
-        val jsonRequest = Json.encodeToString(ProductForCreateMother.instance())
+        val jsonRequest = Json.encodeToString(ProductToCreateMother.instanceDto())
         `when`(request.body()).thenReturn(jsonRequest)
         `when`(productCreation.create(kAny(ProductToCreate::class.java))).thenReturn(createdProduct)
 
         // when
         val result = ProductCreationController(productCreation).createNewProduct(request).toString()
-        val resultProduct = ProductMother.fromJson2Product(result)
+        val resultProduct = Json.decodeFromString<ProductDto>(result).mapFromDtoToDomain()
 
         // then
         Assertions.assertEquals(createdProduct, resultProduct)

@@ -1,5 +1,7 @@
 package com.jubel.jubelind.recipes.domain
 
+import com.jubel.jubelind.recipes.infrastructure.dtos.RecipeToCreateDto
+import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDtoToDomain
 import kotlin.random.Random
 
 class RecipeToCreateMother {
@@ -8,10 +10,16 @@ class RecipeToCreateMother {
 
         private val rnd = Random(System.currentTimeMillis())
 
+        fun instanceDto(
+            name: String = "Name - ${System.currentTimeMillis()}"
+        ): RecipeToCreateDto {
+            return RecipeToCreateDto(name, emptyList())
+        }
+
         fun instance(
             name: String = "Name - ${System.currentTimeMillis()}"
         ): RecipeToCreate {
-            return RecipeToCreate(name)
+            return instanceDto(name).mapFromDtoToDomain()
         }
     }
 

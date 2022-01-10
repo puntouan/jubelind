@@ -1,9 +1,7 @@
 package com.jubel.jubelind.recipes.domain
 
-import kotlinx.serialization.Serializable
 import java.util.*
 
-@Serializable
 class RecipeId(val value: String = UUID.randomUUID().toString()) {
 
     override fun equals(other: Any?): Boolean {
