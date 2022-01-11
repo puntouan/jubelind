@@ -12,8 +12,16 @@ import org.mapstruct.factory.Mappers
 data class RecipeDto(
     val id: String,
     val name: String,
-    val quantityProducts: List<ProductGramsDto>
-)
+    val quantityProducts: List<ProductGramsDto>,
+){
+    var description: String = ""
+
+    init {
+        description = quantityProducts.sortedBy { it.grams }.reversed().joinToString(", ") {
+            it.product.name
+        }
+    }
+}
 
 @Mapper(uses = [ProductGramsDtoMapper::class])
 abstract class RecipeDtoMapper{
