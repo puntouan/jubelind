@@ -8,8 +8,33 @@ class Product(
     val fat: Float,
     val carbohydrates: Float
 ){
+    private val gramsOfMacros = protein + fat + carbohydrates
+    val unknownGrams = 100 - gramsOfMacros
+
+    val caloriesPerGram = calories / 100.0
+
+    val proteinPerGram = protein / 100.0
+    val fatPerGram = fat / 100.0
+    val carbohydratesPerGram = carbohydrates / 100.0
+
+    val proteinCals = protein * CALS_PER_GRAM_OF_PROTEIN
+    val fatCals = fat * CALS_PER_GRAM_OF_FAT
+    val carbohydratesCals = carbohydrates * CALS_PER_GRAM_OF_CARBOHYDRATE
+
+    private val calsOfMacros = proteinCals + fatCals + carbohydratesCals
+    val unknownCals = calories - calsOfMacros
+    val unknownCalsPercentage = if (calories == 0f) 0.0f else (unknownCals * 100) / calories
+
+    val proteinCalsPercentage = if (calories == 0f) 0.0f else (proteinCals * 100) / calories
+    val fatCalsPercentage = if (calories == 0f) 0.0f else (fatCals * 100) / calories
+    val carbohydratesCalsPercentage = if (calories == 0f) 0.0f else (carbohydratesCals * 100) / calories
 
     companion object{
+
+        const val CALS_PER_GRAM_OF_PROTEIN = 4
+        const val CALS_PER_GRAM_OF_FAT = 9
+        const val CALS_PER_GRAM_OF_CARBOHYDRATE = 4
+
         fun fromProductToCreate(productToCreate: ProductToCreate): Product{
             return Product(
                 ProductId(),

@@ -27,20 +27,54 @@ class RecipeInMemoryRepository @Inject constructor(
         return paginator.getPage(queryResult, paginationParams)
     }
 
+    override fun setGramsToProduct(recipeId: String, productId: String, grams: Int) {
+        val recipe = recipes.firstOrNull { it.id == recipeId }
+            ?: throw Error("No such recipe with id: $recipeId")
+        val quantityProduct = recipe.quantityProducts.firstOrNull { it.product.id.value == productId }
+            ?: throw Error("No such product with id: $productId")
+        quantityProduct.grams = grams
+    }
+
+    override fun addQuantityProduct(recipeId: String, product: Product, grams: Int) {
+        val recipe = recipes.firstOrNull { it.id == recipeId }
+            ?: throw Error("No such recipe with id: $recipeId")
+        if (recipe.quantityProducts.any{it.product.id.value == product.id.toString()}){
+            throw Error("Duplicated product with id: ${product.id.value}")
+        }
+        recipe.quantityProducts.add(
+            MutableProductGrams(product, grams)
+        )
+    }
+
+    override fun deleteQuantityProduct(recipeId: String, productId: String) {
+        recipes.firstOrNull { it.id == recipeId }
+            ?.quantityProducts?.removeIf { it.product.id.value == productId }
+    }
+
+    override fun getById(recipeId: String): Recipe? {
+        return recipes.firstOrNull { it.id == recipeId }?.toRecipe()
+    }
+
+    override fun setRecipeName(recipeId: String, name: String) {
+        val recipe = recipes.firstOrNull { it.id == recipeId }
+            ?: throw Error("No such recipe with id: $recipeId")
+        recipe.name = name
+    }
+
     data class MutableRecipe(
         var id: String,
         var name: String,
-        var quantityProducts: List<MutableProductGrams>
+        var quantityProducts: MutableList<MutableProductGrams>
     ){
         constructor(recipe: Recipe): this(
             recipe.id.value,
             recipe.name,
-            recipe.quantityProducts.map { MutableProductGrams(it) }
+            recipe.quantityProducts.map { MutableProductGrams(it) }.toMutableList()
         )
 
         fun toRecipe(): Recipe{
             return Recipe(
-                RecipeId(id), name, quantityProducts.map { it.toProductGrams() }
+                RecipeId(id), name, quantityProducts.map { it.toProductGrams() }.sortedBy { it.grams }.reversed()
             )
         }
     }

@@ -3,6 +3,8 @@ package com.jubel.jubelind.products
 
 import com.jubel.jubelind.JubelIND
 import com.jubel.jubelind.products.domain.ProductToCreateMother
+import com.jubel.jubelind.shared.SQLiteBase
+import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType.JSON
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
@@ -17,7 +19,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 
 @TestInstance(PER_CLASS)
-internal class ProductCreationShould {
+internal class ProductCreationShould: SQLiteBase() {
 
     private val UUID_PATTERN = "[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}"
 
@@ -26,7 +28,8 @@ internal class ProductCreationShould {
     @BeforeAll
     fun setUp(){
         jubelIND = JubelIND()
-        jubelIND.start()
+        jubelIND.stopApp()
+        jubelIND.start(TestSQLiteModule())
     }
 
     @AfterAll

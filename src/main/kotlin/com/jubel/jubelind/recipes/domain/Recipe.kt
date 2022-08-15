@@ -6,6 +6,28 @@ class Recipe(
     val quantityProducts: List<ProductGrams>
     ){
 
+    val grams = quantityProducts.sumOf { it.grams }
+    val absolutCalories = quantityProducts.sumOf { it.absolutCalories }
+    private val calsOfMacros = quantityProducts.sumOf { it.calsOfMacros }
+
+    val unknownCals = absolutCalories - calsOfMacros
+    val unknownCalsPercentage = (unknownCals * 100) / absolutCalories
+
+    val proteinGrams = quantityProducts.sumOf { it.proteinGrams }
+    val proteinGramsPercentage = (proteinGrams * 100) / grams
+    val proteinCals = quantityProducts.sumOf { it.proteinCals }
+    val proteinCalsPercentage = (proteinCals * 100) / absolutCalories
+
+    val fatGrams = quantityProducts.sumOf { it.fatGrams }
+    val fatGramsPercentage = (fatGrams * 100) / grams
+    val fatCals = quantityProducts.sumOf { it.fatCals }
+    val fatCalsPercentage = (fatCals * 100) / absolutCalories
+
+    val carbohydratesGrams = quantityProducts.sumOf { it.carbohydratesGrams }
+    val carbohydratesGramsPercentage = (carbohydratesGrams * 100) / grams
+    val carbohydratesCals = quantityProducts.sumOf { it.carbohydratesCals }
+    val carbohydratesCalsPercentage = (carbohydratesCals * 100) / absolutCalories
+
     companion object{
         fun fromRecipeToCreate(recipeToCreate: RecipeToCreate): Recipe{
             return Recipe(RecipeId(), recipeToCreate.name, recipeToCreate.quantityProducts)

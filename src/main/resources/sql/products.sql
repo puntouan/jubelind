@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO products (id, name, calories, protein, fat, carbohydrates) VALUES ('1', 'Aceite de oliva',888.0,0.0,100.0,0.0);

@@ -1,5 +1,6 @@
 package com.jubel.jubelind
 
+import com.google.inject.AbstractModule
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.jubel.jubelind.shared.infrastructure.*
@@ -16,8 +17,10 @@ import spark.kotlin.stop
 
 class JubelIND {
 
-    fun start(): Injector{
-        val injector = Guice.createInjector()
+    fun start(vararg modules: AbstractModule): Injector{
+        val injector = Guice.createInjector(
+            *modules
+        )
         Controllers().create(injector)
 
         setDefaultContentType()
@@ -55,8 +58,8 @@ class JubelIND {
 
     private fun setExceptionContentTypeAndMessage(response: Response, message: String?) {
         response.type("application/json")
-        val message = MessageDto(message ?: "NO MESSAGE")
-        response.body(Json.encodeToString(message))
+        val str = MessageDto(message ?: "NO MESSAGE")
+        response.body(Json.encodeToString(str))
     }
 
     private fun allowCors(){

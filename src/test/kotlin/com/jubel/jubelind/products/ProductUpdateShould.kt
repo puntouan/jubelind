@@ -4,6 +4,8 @@ package com.jubel.jubelind.products
 import com.google.inject.Injector
 import com.jubel.jubelind.JubelIND
 import com.jubel.jubelind.products.domain.*
+import com.jubel.jubelind.shared.SQLiteBase
+import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType.JSON
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
@@ -18,7 +20,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 
 @TestInstance(PER_CLASS)
-internal class ProductUpdateShould {
+internal class ProductUpdateShould: SQLiteBase() {
 
     private lateinit var jubelIND: JubelIND
     private lateinit var injector: Injector
@@ -26,7 +28,8 @@ internal class ProductUpdateShould {
     @BeforeAll
     fun setUp(){
         jubelIND = JubelIND()
-        injector = jubelIND.start()
+        jubelIND.stopApp()
+        injector = jubelIND.start(TestSQLiteModule())
     }
 
     @AfterAll

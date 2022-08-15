@@ -6,6 +6,8 @@ import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
 import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.shared.SQLiteBase
+import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
@@ -20,7 +22,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 
 @TestInstance(PER_CLASS)
-class ProductFindByNameShould {
+class ProductFindByNameShould: SQLiteBase() {
 
     private lateinit var jubelIND: JubelIND
     private lateinit var injector: Injector
@@ -28,7 +30,8 @@ class ProductFindByNameShould {
     @BeforeAll
     fun setUp(){
         jubelIND = JubelIND()
-        injector = jubelIND.start()
+        jubelIND.stopApp()
+        injector = jubelIND.start(TestSQLiteModule())
     }
 
     @AfterAll
@@ -37,18 +40,18 @@ class ProductFindByNameShould {
     }
 
     @Test
-    fun `return all existing products`() {
+    fun `return all existing products filtering by key`() {
         val existingProducts = listOf(
-            ProductMother.instance(name = "Manzana"),
-            ProductMother.instance(name = "Mandarina"),
-            ProductMother.instance(name = "Mantequilla"),
-            ProductMother.instance(name = "Mangrana"),
-            ProductMother.instance(name = "Carne de ternera"),
-            ProductMother.instance(name = "Solomillo de cerdo"),
-            ProductMother.instance(name = "Pistachos")
+            ProductMother.instance(name = "-test-Manzana"),
+            ProductMother.instance(name = "-test-Mandarina"),
+            ProductMother.instance(name = "-test-Mantequilla"),
+            ProductMother.instance(name = "-test-Mangrana"),
+            ProductMother.instance(name = "-test-Carne de ternera"),
+            ProductMother.instance(name = "-test-Solomillo de cerdo"),
+            ProductMother.instance(name = "-test-Pistachos")
         )
 
-        val key = "man"
+        val key = "-test-"
         Given {
             repositoryWith(existingProducts)
             port(4567)

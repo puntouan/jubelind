@@ -60,7 +60,7 @@ class ProductsData {
             Product(ProductId(),"Hamburguesa ternera",207f,19.4f,14f,0.9f),
             Product(ProductId(),"Harina de trigo",346.18f,10.3f,1.31f,73.11f),
             Product(ProductId(),"Hierbas provenzales",0f,0f,0f,0f),
-            Product(ProductId(),"Hoja verde",19f,11.425f,7.8275f,18.5025f),
+            Product(ProductId(),"Hoja verde",22f,1.6f,0.6f,1.5f),
             Product(ProductId(),"Huevo crudo entero",150f,12.5f,11.1f,0f),
             Product(ProductId(),"Jamón ibérico",346.8f,32f,24f,0.7f),
             Product(ProductId(),"Jamón York",102f,19f,2.5f,0.9f),

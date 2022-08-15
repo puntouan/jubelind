@@ -6,6 +6,8 @@ import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
 import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.shared.SQLiteBase
+import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
@@ -20,7 +22,7 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 
 @TestInstance(PER_CLASS)
-class ProductListAllShould {
+class ProductListAllShould: SQLiteBase() {
 
     private lateinit var jubelIND: JubelIND
     private lateinit var injector: Injector
@@ -28,7 +30,8 @@ class ProductListAllShould {
     @BeforeAll
     fun setUp(){
         jubelIND = JubelIND()
-        injector = jubelIND.start()
+        jubelIND.stopApp()
+        injector = jubelIND.start(TestSQLiteModule())
     }
 
     @AfterAll
@@ -38,24 +41,16 @@ class ProductListAllShould {
 
     @Test
     fun `return all existing products`() {
-        val existingProducts = ProductMother.instances(5)
 
         Given {
-            repositoryWith(existingProducts)
             port(4567)
         } When {
             get("/product")
         } Then {
             statusCode(200)
             contentType(ContentType.JSON)
-            body(Matchers.equalTo(Json.encodeToString(existingProducts.mapFromDomainToDto())))
-        }
-    }
-
-    private fun repositoryWith(existingProducts: List<Product>) {
-        val productRepository = injector.getInstance(ProductRepository::class.java)
-        existingProducts.forEach {
-            productRepository.createProduct(it)
+            val existingProducts = injector.getInstance(ProductRepository::class.java).listAll()
+            body(Matchers.equalTo(Json.encodeToString(existingProducts.sortedBy { it.name }.mapFromDomainToDto())))
         }
     }
 

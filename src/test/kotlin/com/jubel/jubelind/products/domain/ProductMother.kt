@@ -13,8 +13,8 @@ class ProductMother {
         private val rnd = Random(System.currentTimeMillis())
 
         fun instance(
-            id: String = UUID.randomUUID().toString(),
-            name: String = "Name - ${System.currentTimeMillis()}",
+            id: String =UUID.randomUUID().toString(),
+            name: String = "Name - ${UUID.randomUUID()}",
             calories: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             protein: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,
             fat: Float = (rnd.nextFloat() * 100).roundToInt() / 100f,

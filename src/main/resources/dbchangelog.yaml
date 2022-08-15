@@ -1,0 +1,218 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable-products-2022-03-30-001
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: calories
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: protein
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fat
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: carbohydrates
+                  type: float
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: createTable-recipes-2022-03-30-002
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: recipes
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(715)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: createTable-quantity-product-2022-03-30-003
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: quantity_product
+            columns:
+              - column:
+                  name: recipeId
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: quantity_product_pk
+                    foreignKeyName: quantity_product_fk_recipes
+                    references: recipes(id)
+              - column:
+                  name: productId
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: quantity_product_pk
+                    foreignKeyName: quantity_product_fk_products
+                    references: products(id)
+              - column:
+                  name: grams
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: createTable-people-2022-04-16-001
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: people
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: firstname
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: VARCHAR(50)
+              - column:
+                  name: birthday
+                  type: date
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: createTable-plannings-2022-04-16-002
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: plannings
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: startDay
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: endDay
+                  type: date
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: createTable-planning-person-2022-04-16-003
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: planning_person
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: planningId
+                  type: VARCHAR(40)
+                  constraints:
+                    foreignKeyName: planning_person_fk_plannings
+                    references: plannings(id)
+              - column:
+                  name: personId
+                  type: VARCHAR(40)
+                  constraints:
+                    foreignKeyName: quantity_product_fk_people
+                    references: people(id)
+
+  - changeSet:
+      id: createTable-recipes-in-planning-2022-04-16-004
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: recipes_in_planning
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: planningPersonId
+                  type: VARCHAR(40)
+                  constraints:
+                    foreignKeyName: recipes_in_planning_fk_planning_person
+                    references: planning_person(id)
+                    nullable: false
+              - column:
+                  name: originalRecipeId
+                  type: VARCHAR(40)
+              - column:
+                  name: name
+                  type: VARCHAR(715)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: createTable-quantity-product-in-planning-2022-04-16-005
+      author: puntouan
+      changes:
+        - createTable:
+            tableName: quantity_product_in_planning
+            columns:
+              - column:
+                  name: recipeInPlanningId
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: quantity_product_in_planning_pk
+                    foreignKeyName: quantity_product_in_planning_fk_recipes_in_planning
+                    references: recipes_in_planning(id)
+              - column:
+                  name: productId
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: quantity_product_in_planning_pk
+                    foreignKeyName: quantity_product_in_planning_fk_products
+                    references: products(id)
+              - column:
+                  name: grams
+                  type: int
+                  constraints:
+                    nullable: false

@@ -25,6 +25,10 @@ class ProductInMemoryRepository: ProductRepository {
         }
     }
 
+    override fun deleteAll() {
+        TODO("Not yet implemented")
+    }
+
     override fun listAll(): List<Product> {
         return products.map { it.toProduct() }.toMutableList()
     }
