@@ -1,6 +1,7 @@
 package com.jubel.jubelind.shared.infrastructure
 
 import com.google.inject.Injector
+import com.jubel.jubelind.plannings.infrastructure.PlanningSummariesPaginatedController
 import com.jubel.jubelind.products.infrastructure.*
 import com.jubel.jubelind.recipes.infrastructure.*
 
@@ -22,6 +23,7 @@ class Controllers {
         injector.getInstance(AddQuantityProductController::class.java)
         injector.getInstance(GetRecipeMacroDataByIdController::class.java)
         injector.getInstance(GetProductMacroDataByIdController::class.java)
+        injector.getInstance(PlanningSummariesPaginatedController::class.java)
 
     }
 }

@@ -8,8 +8,8 @@ open class SQLiteBase {
 
         init{
 
-            val original = File("/Users/juan/fuente/propio/jbelind.db")
-            val target = File("/Users/juan/fuente/propio/jbelind.test.db")
+            val original = File("db/jubelind.db")
+            val target = File("db/jubelind.test.db")
             original.copyTo(target,true)
 
         }

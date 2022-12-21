@@ -4,7 +4,7 @@ import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PageInfo
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
 
-class PaginatorInMemoryRepository {
+class ListPaginator {
 
     fun <T> getPage(records: List<T>, paginationParams: PaginationParams): Page<T>{
 

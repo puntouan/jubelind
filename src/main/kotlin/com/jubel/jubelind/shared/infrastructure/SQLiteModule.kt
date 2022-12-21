@@ -10,7 +10,7 @@ class SQLiteModule: AbstractModule() {
 
     @Provides @Singleton
     fun provideConnection(): Connection {
-        return DriverManager.getConnection("jdbc:sqlite:/Users/juan/fuente/propio/jbelind.db")
+        return DriverManager.getConnection("jdbc:sqlite:db/jubelind.db")
     }
 
 }

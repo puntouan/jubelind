@@ -1,6 +1,5 @@
 package com.jubel.jubelind.shared.infrastructure
 
-import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PageInfo
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams

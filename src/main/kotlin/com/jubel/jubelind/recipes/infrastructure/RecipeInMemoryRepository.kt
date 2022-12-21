@@ -6,11 +6,11 @@ import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.recipes.domain.*
 import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
-import com.jubel.jubelind.shared.infrastructure.PaginatorInMemoryRepository
+import com.jubel.jubelind.shared.infrastructure.ListPaginator
 
 @Singleton
 class RecipeInMemoryRepository @Inject constructor(
-    private val paginator: PaginatorInMemoryRepository
+    private val paginator: ListPaginator
 ): RecipeRepository {
 
     val recipes = mutableListOf<MutableRecipe>()

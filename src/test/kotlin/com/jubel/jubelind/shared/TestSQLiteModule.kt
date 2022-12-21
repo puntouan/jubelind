@@ -10,7 +10,7 @@ class TestSQLiteModule: AbstractModule() {
 
     @Provides @Singleton
     fun provideConnection(): Connection {
-        return DriverManager.getConnection("jdbc:sqlite:/Users/juan/fuente/propio/jbelind.test.db")
+        return DriverManager.getConnection("jdbc:sqlite:db/jubelind.test.db")
     }
 
 }

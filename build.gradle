@@ -48,7 +48,7 @@ liquibase {
     activities {
         main {
             changeLogFile 'src/main/resources/dbchangelog.yaml'
-            url 'jdbc:sqlite:/Users/juan/fuente/propio/jbelind.db'
+            url 'jdbc:sqlite:db/jubelind.db'
         }
     }
 }
