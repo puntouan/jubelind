@@ -1,10 +1,9 @@
 package com.jubel.jubelind.products.infrastructure
 
 import com.jubel.jubelind.products.application.ProductFindByName
-import com.jubel.jubelind.products.application.ProductListAll
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -20,6 +19,8 @@ class ProductFindByNameControllerShould {
     @Mock
     lateinit var productFindByName: ProductFindByName
 
+    private val productDtoMapper = ProductDtoMapper()
+
     @Test
     fun `return matching products`(){
 
@@ -30,11 +31,13 @@ class ProductFindByNameControllerShould {
             .thenReturn(matchingProducts)
 
         // when
-        val result = ProductFindByNameController(productFindByName)
+        val result = ProductFindByNameController(productFindByName, productDtoMapper)
             .findByName("str").toString()
 
         // then
-        val productResult = Json.decodeFromString<List<ProductDto>>(result).mapFromDtoToDomain()
+        val productResult = productDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<List<ProductDto>>(result)
+        )
         Assertions.assertEquals(matchingProducts, productResult)
     }
 

@@ -1,5 +1,6 @@
 package com.jubel.jubelind.recipes.infrastructure.dtos
 
+import com.google.inject.Singleton
 import com.jubel.jubelind.recipes.domain.Recipe
 import kotlinx.serialization.Serializable
 import kotlin.math.round
@@ -21,6 +22,7 @@ data class NutrientDataDto(
     val calsPercentage: Float
 )
 
+@Singleton
 class MacroDataDtoMapper{
 
     fun mapRecipeToMacroDataDto(recipe: Recipe): MacroDataDto{
@@ -64,5 +66,3 @@ class MacroDataDtoMapper{
         return (round(d * multiplier) / multiplier).toFloat()
     }
 }
-
-fun Recipe.mapFromDomainToMacroDataDto() = MacroDataDtoMapper().mapRecipeToMacroDataDto(this)

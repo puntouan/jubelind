@@ -1,12 +1,9 @@
 package com.jubel.jubelind.products.infrastructure.dtos
 
+import com.google.inject.Singleton
 import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductId
 import kotlinx.serialization.Serializable
-import org.mapstruct.Mapper
-import org.mapstruct.Mapping
-import org.mapstruct.Named
-import org.mapstruct.factory.Mappers
 
 @Serializable
 data class ProductDto(
@@ -18,30 +15,37 @@ data class ProductDto(
     val carbohydrates: Float
 )
 
-@Mapper
-abstract class ProductDtoMapper{
+@Singleton
+class ProductDtoMapper{
 
-    @Mapping(source = "id.value", target = "id")
-    abstract fun mapFromDomainToDto(product: Product):ProductDto
+    fun mapFromDomainToDto(source: Product):ProductDto{
+        return ProductDto(
+            id = source.id.value,
+            name = source.name,
+            calories = source.calories,
+            protein = source.protein,
+            fat = source.fat,
+            carbohydrates = source.carbohydrates
+        )
+    }
 
-    @Mapping(source = "id", target = "id", qualifiedByName = ["toProductId"])
-    abstract fun mapFromDtoToDomain(productDto: ProductDto):Product
+    fun mapFromDomainToDto(source: List<Product>):List<ProductDto>{
+        return source.map { mapFromDomainToDto(it) }
+    }
 
-    @Named("toProductId")
-    fun toProductId(id: String): ProductId{
-        return ProductId(id)
+    fun mapFromDtoToDomain(source: ProductDto):Product{
+        return Product(
+            id = ProductId(source.id),
+            name = source.name,
+            calories = source.calories,
+            protein = source.protein,
+            fat = source.fat,
+            carbohydrates = source.carbohydrates
+        )
+    }
+
+    fun mapFromDtoToDomain(source: List<ProductDto>):List<Product>{
+        return source.map { mapFromDtoToDomain(it) }
     }
 
 }
-
-fun Product.mapFromDomainToDto(): ProductDto =
-    Mappers.getMapper(ProductDtoMapper::class.java).mapFromDomainToDto(this)
-
-fun ProductDto.mapFromDtoToDomain(): Product =
-    Mappers.getMapper(ProductDtoMapper::class.java).mapFromDtoToDomain(this)
-
-fun List<Product>.mapFromDomainToDto(): List<ProductDto> =
-    this.map { it.mapFromDomainToDto()}
-
-fun List<ProductDto>.mapFromDtoToDomain(): List<Product> =
-    this.map { it.mapFromDtoToDomain()}

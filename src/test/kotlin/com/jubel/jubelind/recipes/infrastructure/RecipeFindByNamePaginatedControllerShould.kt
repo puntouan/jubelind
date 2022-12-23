@@ -1,13 +1,13 @@
 package com.jubel.jubelind.recipes.infrastructure
 
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.recipes.application.RecipeFindByNamePaginated
-import com.jubel.jubelind.recipes.domain.Recipe
 import com.jubel.jubelind.recipes.domain.RecipeMother
-import com.jubel.jubelind.recipes.infrastructure.dtos.RecipesPageDto
-import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.recipes.infrastructure.dtos.*
 import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PageInfo
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
+import com.jubel.jubelind.shared.infrastructure.dtos.PageInfoDtoMapper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -23,6 +23,9 @@ class RecipeFindByNamePaginatedControllerShould {
     @Mock
     lateinit var recipeFindByNamePaginated: RecipeFindByNamePaginated
 
+    private val recipesPageDtoMapper = RecipesPageDtoMapper(
+        PageInfoDtoMapper(), RecipeDtoMapper(ProductGramsDtoMapper(ProductDtoMapper()))
+    )
 
     @Test
     fun `return matching products`(){
@@ -39,9 +42,11 @@ class RecipeFindByNamePaginatedControllerShould {
             .thenReturn(pageMatchingRecipes)
 
         // when
-        val result = Json.decodeFromString<RecipesPageDto>(
-            RecipeFindByByNamePaginatedController(recipeFindByNamePaginated).findByNamePaginated("str", paginationParams).toString()
-        ).mapFromDtoToDomain()
+        val result = recipesPageDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString(
+                RecipeFindByByNamePaginatedController(recipeFindByNamePaginated, recipesPageDtoMapper).findByNamePaginated("str", paginationParams).toString()
+            )
+        )
 
         // then
         Assertions.assertEquals(pageMatchingRecipes, result)

@@ -27,4 +27,13 @@ class PageInfoDtoMapper{
         )
     }
 
+    fun mapFromDtoToDomain(source: PageInfoDto): PageInfo{
+        return PageInfo(
+            startOffset = source.startOffset,
+            endOffset = source.endOffset,
+            hasPreviousPage = source.hasPreviousPage,
+            hasNextPage = source.hasNextPage
+        )
+    }
+
 }

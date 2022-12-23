@@ -1,11 +1,11 @@
 package com.jubel.jubelind.recipes.infrastructure.dtos
 
+import com.google.inject.Inject
+import com.google.inject.Singleton
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.recipes.domain.ProductGrams
 import kotlinx.serialization.Serializable
-import org.mapstruct.Mapper
-import org.mapstruct.factory.Mappers
 
 @Serializable
 data class ProductGramsDto(
@@ -13,24 +13,31 @@ data class ProductGramsDto(
     val grams: Int
 )
 
+@Singleton
+class ProductGramsDtoMapper @Inject constructor(
+    private val productDtoMapper: ProductDtoMapper
+){
 
-@Mapper(uses = [ProductDtoMapper::class])
-abstract class ProductGramsDtoMapper{
+    fun mapFromDomainToDto(source: ProductGrams):ProductGramsDto{
+        return ProductGramsDto(
+            product = productDtoMapper.mapFromDomainToDto(source.product),
+            grams = source.grams
+        )
+    }
 
-    abstract fun mapFromDomainToDto(productGrams: ProductGrams):ProductGramsDto
+    fun mapFromDomainToDto(source: List<ProductGrams>): List<ProductGramsDto>{
+        return source.map { mapFromDomainToDto(it) }
+    }
 
-    abstract fun mapFromDtoToDomain(productGramsDto: ProductGramsDto):ProductGrams
+    fun mapFromDtoToDomain(source: ProductGramsDto):ProductGrams{
+        return ProductGrams(
+            product = productDtoMapper.mapFromDtoToDomain(source.product),
+            grams = source.grams
+        )
+    }
+
+    fun mapFromDtoToDomain(source: List<ProductGramsDto>): List<ProductGrams>{
+        return source.map { mapFromDtoToDomain(it) }
+    }
 
 }
-
-fun ProductGrams.mapFromDomainToDto(): ProductGramsDto =
-    Mappers.getMapper(ProductGramsDtoMapper::class.java).mapFromDomainToDto(this)
-
-fun ProductGramsDto.mapFromDtoToDomain(): ProductGrams =
-    Mappers.getMapper(ProductGramsDtoMapper::class.java).mapFromDtoToDomain(this)
-
-fun List<ProductGrams>.mapFromDomainToDto(): List<ProductGramsDto> =
-    this.map { it.mapFromDomainToDto()}
-
-fun List<ProductGramsDto>.mapFromDtoToDomain(): List<ProductGrams> =
-    this.map { it.mapFromDtoToDomain()}

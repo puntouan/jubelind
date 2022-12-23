@@ -1,12 +1,9 @@
 package com.jubel.jubelind.recipes.infrastructure.dtos
 
-import com.jubel.jubelind.recipes.domain.ProductGrams
+import com.google.inject.Inject
+import com.google.inject.Singleton
 import com.jubel.jubelind.recipes.domain.RecipeToCreate
 import kotlinx.serialization.Serializable
-import org.mapstruct.Mapper
-import org.mapstruct.Mapping
-import org.mapstruct.Named
-import org.mapstruct.factory.Mappers
 
 @Serializable
 data class RecipeToCreateDto(
@@ -14,18 +11,19 @@ data class RecipeToCreateDto(
     val quantityProducts: List<ProductGramsDto>?
 )
 
-@Mapper(uses = [ProductGramsDtoMapper::class])
-abstract class RecipeToCreateDtoMapper{
+@Singleton
+class RecipeToCreateDtoMapper @Inject constructor(
+    private val productGramsDtoMapper: ProductGramsDtoMapper
+){
 
-    @Mapping(source = "quantityProducts", target = "quantityProducts", qualifiedByName = ["toProductGramsDomain"])
-    abstract fun mapFromDtoToDomain(recipeToCreateDto: RecipeToCreateDto): RecipeToCreate
-
-    @Named("toProductGramsDomain")
-    fun toProductGramsDomain(quantityProducts: List<ProductGramsDto>?): List<ProductGrams> {
-        return quantityProducts?.map { it.mapFromDtoToDomain() } ?: emptyList()
+    fun mapFromDtoToDomain(source: RecipeToCreateDto): RecipeToCreate{
+        return RecipeToCreate(
+            name = source.name,
+            quantityProducts = source.quantityProducts?.let {
+                productGramsDtoMapper.mapFromDtoToDomain(it)
+            } ?: emptyList()
+        )
     }
 
-}
 
-fun RecipeToCreateDto.mapFromDtoToDomain(): RecipeToCreate =
-    Mappers.getMapper(RecipeToCreateDtoMapper::class.java).mapFromDtoToDomain(this)
+}

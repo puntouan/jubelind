@@ -2,18 +2,16 @@ package com.jubel.jubelind.products
 
 import com.google.inject.Injector
 import com.jubel.jubelind.JubelIND
-import com.jubel.jubelind.products.domain.Product
-import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.shared.SQLiteBase
 import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType
 import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
 import org.hamcrest.Matchers
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -50,8 +48,10 @@ class ProductListAllShould: SQLiteBase() {
             statusCode(200)
             contentType(ContentType.JSON)
             val existingProducts = injector.getInstance(ProductRepository::class.java).listAll()
-            body(Matchers.equalTo(Json.encodeToString(existingProducts.sortedBy { it.name }.mapFromDomainToDto())))
+            val existingProductsDtos = ProductDtoMapper().mapFromDomainToDto(existingProducts.sortedBy { it.name })
+            body(Matchers.equalTo(Json.encodeToJsonElement(existingProductsDtos).toString()))
         }
+
     }
 
 }

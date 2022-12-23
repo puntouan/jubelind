@@ -6,7 +6,7 @@ import com.jubel.jubelind.JubelIND
 import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.shared.SQLiteBase
 import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType.JSON
@@ -53,7 +53,7 @@ internal class ProductRetrievalShould: SQLiteBase() {
         } Then {
             statusCode(200)
             contentType(JSON)
-            body(equalTo(Json.encodeToString(existingProduct.mapFromDomainToDto())))
+            body(equalTo(Json.encodeToString(ProductDtoMapper().mapFromDomainToDto(existingProduct))))
         }
     }
 

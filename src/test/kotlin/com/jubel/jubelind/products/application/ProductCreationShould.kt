@@ -1,19 +1,14 @@
 package com.jubel.jubelind.products.application
 
 import com.jubel.jubelind.products.domain.Product
-import com.jubel.jubelind.products.domain.ProductToCreateMother
 import com.jubel.jubelind.products.domain.ProductRepository
-import org.assertj.core.api.Assertions.*
-import org.hamcrest.core.AnyOf
+import com.jubel.jubelind.products.domain.ProductToCreateMother
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.AdditionalAnswers
 import org.mockito.Mock
 import org.mockito.Mockito.*
-import org.mockito.invocation.InvocationOnMock
 import org.mockito.junit.jupiter.MockitoExtension
-import org.mockito.stubbing.Answer
 
 @ExtendWith(MockitoExtension::class)
 internal class ProductCreationShould {

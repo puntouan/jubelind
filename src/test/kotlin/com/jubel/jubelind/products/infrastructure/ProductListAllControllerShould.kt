@@ -3,7 +3,7 @@ package com.jubel.jubelind.products.infrastructure
 import com.jubel.jubelind.products.application.ProductListAll
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -19,6 +19,8 @@ class ProductListAllControllerShould {
     @Mock
     lateinit var productListAll: ProductListAll
 
+    private val productDtoMapper = ProductDtoMapper()
+
     @Test
     fun `return all existing products`(){
 
@@ -29,11 +31,13 @@ class ProductListAllControllerShould {
             .thenReturn(existingProducts)
 
         // when
-        val result = ProductListAllController(productListAll)
+        val result = ProductListAllController(productListAll, productDtoMapper)
             .listAll().toString()
 
         // then
-        val productResult = Json.decodeFromString<List<ProductDto>>(result).mapFromDtoToDomain()
+        val productResult = productDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<List<ProductDto>>(result)
+        )
         Assertions.assertEquals(existingProducts, productResult)
     }
 

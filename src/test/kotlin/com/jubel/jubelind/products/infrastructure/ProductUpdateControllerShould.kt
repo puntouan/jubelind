@@ -5,8 +5,9 @@ import com.jubel.jubelind.products.domain.NonExistingProductException
 import com.jubel.jubelind.products.domain.ProductDataToUpdate
 import com.jubel.jubelind.products.domain.ProductDataToUpdateMother
 import com.jubel.jubelind.products.domain.ProductMother
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDataToUpdateDtoMapper
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.shared.infrastructure.NotFoundException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -32,6 +33,8 @@ class ProductUpdateControllerShould {
     @Mock
     lateinit var productUpdate: ProductUpdate
 
+    private val productDataToUpdateDtoMapper = ProductDataToUpdateDtoMapper()
+    private val productDtoMapper = ProductDtoMapper()
 
     @Test
     fun `update a product`(){
@@ -43,8 +46,13 @@ class ProductUpdateControllerShould {
         `when`(productUpdate.update(kAny(String::class.java), kAny(ProductDataToUpdate::class.java))).thenReturn(updatedProduct)
 
         // when
-        val result = ProductUpdateController(productUpdate).updateProduct(request).toString()
-        val resultProduct = Json.decodeFromString<ProductDto>(result).mapFromDtoToDomain()
+        val result = ProductUpdateController(
+            productUpdate, productDataToUpdateDtoMapper, productDtoMapper
+        ).updateProduct(request).toString()
+        val resultProduct = productDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<ProductDto>(result)
+        )
+
         // then
         Assertions.assertEquals(updatedProduct, resultProduct)
     }
@@ -61,7 +69,9 @@ class ProductUpdateControllerShould {
         // then
         assertThrows<NotFoundException>{
             // when
-            ProductUpdateController(productUpdate).updateProduct(request)
+            ProductUpdateController(
+                productUpdate, productDataToUpdateDtoMapper, productDtoMapper
+            ).updateProduct(request)
         }
     }
 

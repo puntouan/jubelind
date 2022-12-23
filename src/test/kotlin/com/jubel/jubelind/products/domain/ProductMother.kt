@@ -1,8 +1,6 @@
 package com.jubel.jubelind.products.domain
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.*
 import java.util.*
 import kotlin.math.roundToInt
 import kotlin.random.Random

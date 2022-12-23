@@ -2,13 +2,14 @@ package com.jubel.jubelind.products.infrastructure
 
 import com.google.inject.Inject
 import com.jubel.jubelind.products.application.ProductFindByName
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import spark.kotlin.get
 
 class ProductFindByNameController @Inject constructor(
-    private val productFindByName: ProductFindByName
+    private val productFindByName: ProductFindByName,
+    private val productDtoMapper: ProductDtoMapper
 ){
 
     init {
@@ -19,7 +20,11 @@ class ProductFindByNameController @Inject constructor(
     }
 
     fun findByName(str: String): Any{
-        return Json.encodeToString(productFindByName.findByName(str).mapFromDomainToDto())
+        return Json.encodeToString(
+            productDtoMapper.mapFromDomainToDto(
+                productFindByName.findByName(str)
+            )
+        )
     }
 
 }

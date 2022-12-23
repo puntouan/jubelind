@@ -5,7 +5,7 @@ import com.jubel.jubelind.JubelIND
 import com.jubel.jubelind.products.domain.Product
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductRepository
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDomainToDto
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.shared.SQLiteBase
 import com.jubel.jubelind.shared.TestSQLiteModule
 import io.restassured.http.ContentType
@@ -62,7 +62,7 @@ class ProductFindByNameShould: SQLiteBase() {
             statusCode(200)
             contentType(ContentType.JSON)
             val expectedProducts = existingProducts.filter { it.name.contains(key, true) }.sortedBy { it.name }
-            body(Matchers.equalTo(Json.encodeToString(expectedProducts.mapFromDomainToDto())))
+            body(Matchers.equalTo(Json.encodeToString(ProductDtoMapper().mapFromDomainToDto(expectedProducts))))
         }
     }
 

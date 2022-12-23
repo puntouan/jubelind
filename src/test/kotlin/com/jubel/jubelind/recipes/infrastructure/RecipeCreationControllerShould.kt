@@ -1,12 +1,14 @@
 package com.jubel.jubelind.recipes.infrastructure
 
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.recipes.application.RecipeCreation
-import com.jubel.jubelind.recipes.domain.Recipe
 import com.jubel.jubelind.recipes.domain.RecipeMother
 import com.jubel.jubelind.recipes.domain.RecipeToCreate
 import com.jubel.jubelind.recipes.domain.RecipeToCreateMother
+import com.jubel.jubelind.recipes.infrastructure.dtos.ProductGramsDtoMapper
 import com.jubel.jubelind.recipes.infrastructure.dtos.RecipeDto
-import com.jubel.jubelind.recipes.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.recipes.infrastructure.dtos.RecipeDtoMapper
+import com.jubel.jubelind.recipes.infrastructure.dtos.RecipeToCreateDtoMapper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -29,6 +31,12 @@ class RecipeCreationControllerShould {
     @Mock
     lateinit var recipeCreation: RecipeCreation
 
+    private val productGramsDtoMapper = ProductGramsDtoMapper(ProductDtoMapper())
+
+    private val recipeToCreateDtoMapper = RecipeToCreateDtoMapper(productGramsDtoMapper)
+
+    private val recipeDtoMapper = RecipeDtoMapper(productGramsDtoMapper)
+
     @Test
     fun `create a new recipe`(){
         //given
@@ -38,7 +46,11 @@ class RecipeCreationControllerShould {
         Mockito.`when`(recipeCreation.run(kAny(RecipeToCreate::class.java))).thenReturn(expectedRecipe)
 
         // when
-        val resultRecipe = Json.decodeFromString<RecipeDto>(RecipeCreationController(recipeCreation).createNewRecipe(request).toString()).mapFromDtoToDomain()
+        val resultRecipe = recipeDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<RecipeDto>(
+                RecipeCreationController(recipeCreation, recipeToCreateDtoMapper, recipeDtoMapper).createNewRecipe(request).toString()
+            )
+        )
 
         // then
         Assertions.assertEquals(expectedRecipe, resultRecipe)

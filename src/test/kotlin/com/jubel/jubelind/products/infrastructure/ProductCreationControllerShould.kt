@@ -1,11 +1,12 @@
 package com.jubel.jubelind.products.infrastructure
 
 import com.jubel.jubelind.products.application.ProductCreation
-import com.jubel.jubelind.products.domain.ProductToCreateMother
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.domain.ProductToCreate
+import com.jubel.jubelind.products.domain.ProductToCreateMother
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
+import com.jubel.jubelind.products.infrastructure.dtos.ProductToCreateDtoMapper
 import com.jubel.jubelind.shared.infrastructure.BadRequestException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -31,6 +32,9 @@ class ProductCreationControllerShould {
     @Mock
     lateinit var productCreation: ProductCreation
 
+    private val productToCreateDtoMapper = ProductToCreateDtoMapper()
+
+    private val productDtoMapper = ProductDtoMapper()
 
 
     @Test
@@ -42,8 +46,12 @@ class ProductCreationControllerShould {
         `when`(productCreation.create(kAny(ProductToCreate::class.java))).thenReturn(createdProduct)
 
         // when
-        val result = ProductCreationController(productCreation).createNewProduct(request).toString()
-        val resultProduct = Json.decodeFromString<ProductDto>(result).mapFromDtoToDomain()
+        val result = ProductCreationController(
+            productCreation, productToCreateDtoMapper, productDtoMapper
+        ).createNewProduct(request).toString()
+        val resultProduct = productDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<ProductDto>(result)
+        )
 
         // then
         Assertions.assertEquals(createdProduct, resultProduct)
@@ -66,7 +74,9 @@ class ProductCreationControllerShould {
         // then
         assertThrows<BadRequestException>{
             // when
-            ProductCreationController(productCreation).createNewProduct(request)
+            ProductCreationController(
+                productCreation, productToCreateDtoMapper, productDtoMapper
+            ).createNewProduct(request)
         }
 
     }

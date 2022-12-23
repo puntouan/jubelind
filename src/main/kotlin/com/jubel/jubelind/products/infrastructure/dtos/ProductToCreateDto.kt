@@ -1,9 +1,8 @@
 package com.jubel.jubelind.products.infrastructure.dtos
 
+import com.google.inject.Singleton
 import com.jubel.jubelind.products.domain.ProductToCreate
 import kotlinx.serialization.Serializable
-import org.mapstruct.Mapper
-import org.mapstruct.factory.Mappers
 
 @Serializable
 class ProductToCreateDto(
@@ -14,12 +13,17 @@ class ProductToCreateDto(
     val carbohydrates: Float
 )
 
-@Mapper
-abstract class ProductToCreateDtoMapper{
+@Singleton
+class ProductToCreateDtoMapper{
 
-    abstract fun mapFromDtoToDomain(productToCreateDto: ProductToCreateDto):ProductToCreate
+    fun mapFromDtoToDomain(source: ProductToCreateDto):ProductToCreate{
+        return ProductToCreate(
+            name = source.name,
+            calories = source.calories,
+            protein = source.protein,
+            fat = source.fat,
+            carbohydrates = source.carbohydrates
+        )
+    }
 
 }
-
-fun ProductToCreateDto.mapFromDtoToDomain(): ProductToCreate =
-    Mappers.getMapper(ProductToCreateDtoMapper::class.java).mapFromDtoToDomain(this)

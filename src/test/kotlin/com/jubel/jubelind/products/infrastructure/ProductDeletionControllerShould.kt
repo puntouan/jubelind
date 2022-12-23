@@ -2,13 +2,11 @@ package com.jubel.jubelind.products.infrastructure
 
 import com.jubel.jubelind.products.application.ProductDeleteById
 import com.jubel.jubelind.products.domain.NonExistingProductException
-import com.jubel.jubelind.shared.infrastructure.BadRequestException
 import com.jubel.jubelind.shared.infrastructure.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension

@@ -3,7 +3,7 @@ package com.jubel.jubelind.products.infrastructure
 import com.jubel.jubelind.products.application.ProductGetById
 import com.jubel.jubelind.products.domain.ProductMother
 import com.jubel.jubelind.products.infrastructure.dtos.ProductDto
-import com.jubel.jubelind.products.infrastructure.dtos.mapFromDtoToDomain
+import com.jubel.jubelind.products.infrastructure.dtos.ProductDtoMapper
 import com.jubel.jubelind.shared.infrastructure.NotFoundException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -15,7 +15,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import spark.Request
-import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 class ProductRetrievalControllerShould {
@@ -25,6 +24,8 @@ class ProductRetrievalControllerShould {
 
     @Mock
     lateinit var productGetById: ProductGetById
+
+    private val productDtoMapper = ProductDtoMapper()
 
     @Test
     fun `get an existing product by id`(){
@@ -36,11 +37,13 @@ class ProductRetrievalControllerShould {
             .thenReturn(existingProduct)
 
         // when
-        val result = ProductRetrievalController(productGetById)
+        val result = ProductRetrievalController(productGetById, productDtoMapper)
             .getById(request).toString()
 
         // then
-        val productResult = Json.decodeFromString<ProductDto>(result).mapFromDtoToDomain()
+        val productResult = productDtoMapper.mapFromDtoToDomain(
+            Json.decodeFromString<ProductDto>(result)
+        )
         assertEquals(existingProduct, productResult)
     }
 
@@ -55,7 +58,7 @@ class ProductRetrievalControllerShould {
         // then
         assertThrows<NotFoundException> {
             // when
-            ProductRetrievalController(productGetById).getById(request)
+            ProductRetrievalController(productGetById, productDtoMapper).getById(request)
         }
     }
 
