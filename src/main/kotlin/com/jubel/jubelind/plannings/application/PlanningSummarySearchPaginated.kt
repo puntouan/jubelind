@@ -6,6 +6,7 @@ import com.jubel.jubelind.shared.domain.pagination.Page
 import com.jubel.jubelind.shared.domain.pagination.PaginationParams
 import com.jubel.jubelind.shared.infrastructure.ListPaginator
 import java.time.LocalDateTime
+import java.util.UUID
 import kotlin.random.Random
 
 
@@ -16,7 +17,7 @@ class PlanningSummarySearchPaginated {
     private val nMocks = 80
     private val mockedData = (0..nMocks).map{
         rndPlanningSummary(it.toLong() + 1, nMocks.toLong())
-    }
+    }.reversed()
 
     private val paginator = ListPaginator()
 
@@ -55,12 +56,13 @@ class PlanningSummarySearchPaginated {
                 carbohydrates + Product.CALS_PER_GRAM_OF_CARBOHYDRATE
 
         return PlanningSummary(
+            id = UUID.randomUUID().toString(),
             start = start.toLocalDate(),
             end = end.toLocalDate(),
-            calsPerWeek = cals,
-            proteinPerWeek = protein,
-            fatPerWeek = fat,
-            carbohydratesPerWeek = carbohydrates
+            calsPerWeek = cals.toDouble(),
+            proteinPerWeek = protein.toDouble(),
+            fatPerWeek = fat.toDouble(),
+            carbohydratesPerWeek = carbohydrates.toDouble()
         )
 
     }

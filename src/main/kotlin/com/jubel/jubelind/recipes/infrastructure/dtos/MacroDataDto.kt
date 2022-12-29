@@ -1,9 +1,10 @@
 package com.jubel.jubelind.recipes.infrastructure.dtos
 
+import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.jubel.jubelind.recipes.domain.Recipe
+import com.jubel.jubelind.shared.infrastructure.dtos.NumberFormatter
 import kotlinx.serialization.Serializable
-import kotlin.math.round
 
 @Serializable
 data class MacroDataDto(
@@ -23,46 +24,43 @@ data class NutrientDataDto(
 )
 
 @Singleton
-class MacroDataDtoMapper{
+class MacroDataDtoMapper @Inject constructor(
+    private val formatter: NumberFormatter
+){
 
     fun mapRecipeToMacroDataDto(recipe: Recipe): MacroDataDto{
         return MacroDataDto(
             protein = NutrientDataDto(
-                grams = format(recipe.proteinGrams),
-                gramsPercentage = format(recipe.proteinGramsPercentage),
-                cals = format(recipe.proteinCals),
-                calsPercentage = format(recipe.proteinCalsPercentage)
+                grams = formatter.format(recipe.proteinGrams),
+                gramsPercentage = formatter.format(recipe.proteinGramsPercentage),
+                cals = formatter.format(recipe.proteinCals),
+                calsPercentage = formatter.format(recipe.proteinCalsPercentage)
             ),
             fat = NutrientDataDto(
-                grams = format(recipe.fatGrams),
-                gramsPercentage = format(recipe.fatGramsPercentage),
-                cals = format(recipe.fatCals),
-                calsPercentage = format(recipe.fatCalsPercentage)
+                grams = formatter.format(recipe.fatGrams),
+                gramsPercentage = formatter.format(recipe.fatGramsPercentage),
+                cals = formatter.format(recipe.fatCals),
+                calsPercentage = formatter.format(recipe.fatCalsPercentage)
             ),
             carbohydrates = NutrientDataDto(
-                grams = format(recipe.carbohydratesGrams),
-                gramsPercentage = format(recipe.carbohydratesGramsPercentage),
-                cals = format(recipe.carbohydratesCals),
-                calsPercentage = format(recipe.carbohydratesCalsPercentage)
+                grams = formatter.format(recipe.carbohydratesGrams),
+                gramsPercentage = formatter.format(recipe.carbohydratesGramsPercentage),
+                cals = formatter.format(recipe.carbohydratesCals),
+                calsPercentage = formatter.format(recipe.carbohydratesCalsPercentage)
             ),
             other = NutrientDataDto(
-                grams = format(0.0),
-                gramsPercentage = format(0.0),
-                cals = format(recipe.unknownCals),
-                calsPercentage = format(recipe.unknownCalsPercentage)
+                grams = formatter.format(0.0),
+                gramsPercentage = formatter.format(0.0),
+                cals = formatter.format(recipe.unknownCals),
+                calsPercentage = formatter.format(recipe.unknownCalsPercentage)
             ),
             total = NutrientDataDto(
-                grams = format(recipe.grams.toDouble()),
-                gramsPercentage = format(100.0),
-                cals = format(recipe.absolutCalories),
-                calsPercentage = format(100.0)
+                grams = formatter.format(recipe.grams.toDouble()),
+                gramsPercentage = formatter.format(100.0),
+                cals = formatter.format(recipe.absolutCalories),
+                calsPercentage = formatter.format(100.0)
             )
         )
     }
 
-    private fun format(d: Double, decimals: Int = 2): Float{
-        var multiplier = 1.0
-        repeat(decimals) { multiplier *= 10 }
-        return (round(d * multiplier) / multiplier).toFloat()
-    }
 }

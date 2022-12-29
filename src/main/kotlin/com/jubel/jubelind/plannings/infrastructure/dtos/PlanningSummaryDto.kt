@@ -4,32 +4,49 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.jubel.jubelind.plannings.domain.PlanningSummary
 import com.jubel.jubelind.shared.domain.pagination.Page
+import com.jubel.jubelind.shared.infrastructure.dtos.NumberFormatter
 import com.jubel.jubelind.shared.infrastructure.dtos.PageDto
 import com.jubel.jubelind.shared.infrastructure.dtos.PageInfoDtoMapper
 import kotlinx.serialization.Serializable
+import java.time.format.DateTimeFormatter
 
 @Serializable
 data class PlanningSummaryDto(
-    val start: Long,
-    val end: Long,
-    val calsPerWeek: Int,
-    val proteinPerWeek: Int,
-    val fatPerWeek: Int,
-    val carbohydratesPerWeek: Int
+    val id: String,
+    val start: String,
+    val end: String,
+    val calsPerWeek: Float,
+    val proteinPerWeek: Float,
+    val proteinCalsPerWeek: Float,
+    val proteinCalsPercentage: Float,
+    val fatPerWeek: Float,
+    val fatCalsPerWeek: Float,
+    val fatCalsPercentage: Float,
+    val carbohydratesPerWeek: Float,
+    val carbohydratesCalsPerWeek: Float,
+    val carbohydratesCalsPercentage: Float
 )
 
 
 @Singleton
-class PlanningSummaryDtoMapper{
-
+class PlanningSummaryDtoMapper @Inject constructor(
+    private val formatter: NumberFormatter
+){
     fun mapFromDomainToDto(source: PlanningSummary): PlanningSummaryDto{
         return PlanningSummaryDto(
-            start = source.start.toEpochDay(),
-            end = source.end.toEpochDay(),
-            calsPerWeek = source.calsPerWeek,
-            proteinPerWeek = source.proteinPerWeek,
-            fatPerWeek = source.fatPerWeek,
-            carbohydratesPerWeek = source.carbohydratesPerWeek
+            id = source.id,
+            start = source.start.format(DateTimeFormatter.ISO_LOCAL_DATE),
+            end = source.end.format(DateTimeFormatter.ISO_LOCAL_DATE),
+            calsPerWeek = formatter.format(source.calsPerWeek),
+            proteinPerWeek = formatter.format(source.proteinPerWeek),
+            proteinCalsPerWeek = formatter.format(source.proteinCalsPerWeek),
+            proteinCalsPercentage = formatter.format(source.proteinCalsPercentage),
+            fatPerWeek = formatter.format(source.fatPerWeek),
+            fatCalsPerWeek = formatter.format(source.fatCalsPerWeek),
+            fatCalsPercentage = formatter.format(source.fatCalsPercentage),
+            carbohydratesPerWeek = formatter.format(source.carbohydratesPerWeek),
+            carbohydratesCalsPerWeek = formatter.format(source.carbohydratesCalsPerWeek),
+            carbohydratesCalsPercentage = formatter.format(source.carbohydratesCalsPercentage)
         )
     }
 
